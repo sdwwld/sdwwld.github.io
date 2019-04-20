@@ -1,9 +1,9 @@
 {% if site.recommends %}
 <hr>
-<h5>RECOMMENDS</h5>
+<h5>Recommends</h5>
 <ul class="list-inline">
-  {% for recommend in site.recommends %}
-  <li><a href="{{recommend.href}}">{{recommend.title}}</a></li>
+  {% for friend in site.recommends %}
+  <li><a href="{{friend.href}}">{{friend.title}}</a></li>
   {% endfor %}
 </ul>
 {% endif %}
