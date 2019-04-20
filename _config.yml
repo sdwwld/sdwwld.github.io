@@ -67,10 +67,10 @@ netease_comment: false
 
 # Analytics settings
 # Baidu Analytics 
- ba_track_id: '094409d655bc632923a860a5ad9096f2'
+ #ba_track_id: '094409d655bc632923a860a5ad9096f2'
 
 # Google Analytics
-#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
 ga_domain: androidboke.com
 
 
