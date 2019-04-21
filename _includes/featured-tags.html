@@ -20,7 +20,7 @@
                     href="{{ site.baseurl }}/archive/?tag={{ tag[0] | url_encode }}"
                     title="{{ tag[0] }}"
                     rel="{{ tag[1].size }}">{{ tag[0] }}</a>
-        {% endif %}
+        {% endfor %}
         {% endcapture %}
         {{ tags | split:'</a>' | sort | join:'</a>' }}
     </div>
