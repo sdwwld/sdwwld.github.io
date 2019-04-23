@@ -71,7 +71,7 @@ description: "生命不息 博客不止"
             {% endif %}
         </li>
         <li>
-            <a href="{{  paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', paginator.total_pages }}">
                 <span>末页</span>
             </a>
         </li>
