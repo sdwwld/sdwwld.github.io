@@ -36,17 +36,20 @@ description: "生命不息 博客不止"
             </a>
         </li>
         <li>
-        {% if paginator.page == 1 %}
+		
+		
+
+		
+		 {% if paginator.page == paginator.total_pages %}
             <span>&laquo;</span>
-        {% else %}
-            {% if paginator.previous_page == 1 %}
-            <a href="{{ site.baseurl}}/article/">
             {% else %}
             <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-            {% endif %}
                 <span>&laquo;</span>
             </a>
-        {% endif %}
+         {% endif %}
+		
+		
+		
         </li>
         {% for i in (1..paginator.total_pages) limit:10 %}
             {% if paginator.page == i %}
