@@ -31,7 +31,7 @@ description: "生命不息 博客不止"
 
 <ul class="pagination">
         <li>
-            <a href="{{ site.baseurl}}/article/">
+            <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">
                 <span>首页</span>
             </a>
         </li>
@@ -90,7 +90,7 @@ description: "生命不息 博客不止"
             {% endif %}
         </li>
         <li>
-            <a href="{{  paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page}}">
                 <span>末页</span>
             </a>
         </li>
