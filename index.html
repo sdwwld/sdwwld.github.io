@@ -78,11 +78,10 @@ description: "生命不息 博客不止"
         <li class="disabled">
             <span>第{{paginator.page}}页 / 共{{paginator.total_pages}}页</span>
         </li>
-		
-		
-		
-		
-		
+</ul>
+
+
+
 		
 	{% for page in (1..paginator.total_pages) %}
 		{% if page == paginator.page %}
@@ -93,12 +92,9 @@ description: "生命不息 博客不止"
 		  <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
 		{% endif %}
 	{% endfor %}
-		
-		
-		
-		
 
-</ul>
+
+
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
