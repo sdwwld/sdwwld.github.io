@@ -60,26 +60,7 @@ description: "生命不息 博客不止"
             <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }} ">{{i}}</a>
             {% endif %}
         </li>
-        {% endfor %}
-		
-		
-		
-		
-		  {% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-      <em>{{ page }}</em>
-    {% elsif page == 1 %}
-      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-    {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-    {% endif %}
-  {% endfor %}
-		
-		
-		
-		
-		
-		
+        {% endfor %}						
         <li>
             {% if paginator.page == paginator.total_pages %}
             <span>&raquo;</span>
@@ -97,6 +78,26 @@ description: "生命不息 博客不止"
         <li class="disabled">
             <span>第{{paginator.page}}页 / 共{{paginator.total_pages}}页</span>
         </li>
+		
+		
+		
+		
+		
+		
+		  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+		
+		
+		
+		
+
 </ul>
 
 <!-- Pager -->
