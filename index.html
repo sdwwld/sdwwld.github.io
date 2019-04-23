@@ -31,7 +31,7 @@ description: "生命不息 博客不止"
 
 <ul class="pagination">
         <li>
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', 2}}">
+            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', 1}}">
                 <span>首页</span>
             </a>
         </li>
@@ -48,7 +48,7 @@ description: "生命不息 博客不止"
             </a>
         {% endif %}
         </li>
-        {% for i in (1..paginator.total_pages) limit:9 offset:{{paginator.page-1}} %}
+        {% for i in (1..paginator.total_pages) limit:10 offset:{{paginator.page-1}} %}
             {% if paginator.page == i %}
         <li class="active">
             {% else %}
