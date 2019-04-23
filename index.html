@@ -61,6 +61,15 @@ description: "生命不息 博客不止"
             {% endif %}
         </li>
         {% endfor %}
+		  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
         <li>
             {% if paginator.page == paginator.total_pages %}
             <span>&raquo;</span>
