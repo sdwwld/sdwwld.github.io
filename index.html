@@ -48,7 +48,7 @@ description: "生命不息 博客不止"
             </a>
         {% endif %}
         </li>
-        {% for i in (1..paginator.total_pages)  offset:{{paginator.page-1}} %}
+        {% for i in (1..paginator.total_pages) limit:9 offset:{{paginator.page-1}} %}
             {% if paginator.page == i %}
         <li class="active">
             {% else %}
@@ -65,7 +65,7 @@ description: "生命不息 博客不止"
             {% if paginator.page == paginator.total_pages %}
             <span>&raquo;</span>
             {% else %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
                 <span>&raquo;</span>
             </a>
             {% endif %}
