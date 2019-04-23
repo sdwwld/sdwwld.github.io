@@ -51,7 +51,7 @@ description: "生命不息 博客不止"
 		
 		
         </li>
-        {% for i in (1..paginator.total_pages) limit:10 %}
+        {% for i in (1..paginator.total_pages) limit:10 offset:{{paginator.page-1}} %}
             {% if paginator.page == i %}
         <li class="active">
             {% else %}
