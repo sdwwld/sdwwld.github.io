@@ -29,17 +29,15 @@ description: "生命不息 博客不止"
 <hr>
 {% endfor %}
 
+<!-- https://www.cnblogs.com/strick/p/5484779.html -->	
+<!--
 <ul class="pagination">
         <li>
             <a href="{{site.baseurl}}">
                 <span>首页</span>
             </a>
-        </li>
+        </li>			
         <li>
-		
-		
-
-		
 		 {% if paginator.page == paginator.total_pages %}
             <span>&laquo;</span>
             {% else %}
@@ -47,10 +45,8 @@ description: "生命不息 博客不止"
                 <span>&laquo;</span>
             </a>
          {% endif %}
-		
-		
-		
-        </li>
+        </li>		
+				
         {% for i in (1..paginator.total_pages) limit:10 offset:{{paginator.page-1}} %}
             {% if paginator.page == i %}
         <li class="active">
@@ -78,7 +74,7 @@ description: "生命不息 博客不止"
             <span>第{{paginator.page}}页 / 共{{paginator.total_pages}}页</span>
         </li>
 </ul>
-
+-->	
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
 <ul class="pager">
