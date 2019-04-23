@@ -57,7 +57,7 @@ description: "生命不息 博客不止"
             {% if i == 1 %}
             <a href="{{site.baseurl}}/article">{{i}}</a>
             {% else %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }} ">{{i}}</a>
+            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', i }} ">{{i}}</a>
             {% endif %}
         </li>
         {% endfor %}						
