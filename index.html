@@ -42,7 +42,7 @@ description: "生命不息 博客不止"
             {% if paginator.previous_page == 1 %}
             <a href="{{ site.baseurl}}/article/">
             {% else %}
-            <a href="{{ site.baseurl}}/article/{{ paginator.previous_page }}">
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
             {% endif %}
                 <span>&laquo;</span>
             </a>
@@ -57,7 +57,7 @@ description: "生命不息 博客不止"
             {% if i == 1 %}
             <a href="{{site.baseurl}}/article">{{i}}</a>
             {% else %}
-            <a href="{{site.baseurl}}/article/{{i}}">{{i}}</a>
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }} ">{{i}}</a>
             {% endif %}
         </li>
         {% endfor %}
@@ -65,13 +65,13 @@ description: "生命不息 博客不止"
             {% if paginator.page == paginator.total_pages %}
             <span>&raquo;</span>
             {% else %}
-            <a href="{{ site.baseurl}}/article/{{ paginator.next_page }}">
+            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
                 <span>&raquo;</span>
             </a>
             {% endif %}
         </li>
         <li>
-            <a href="{{ site.baseurl}}/article/{{paginator.total_pages}}">
+            <a href="{{  paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
                 <span>末页</span>
             </a>
         </li>
