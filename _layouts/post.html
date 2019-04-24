@@ -33,7 +33,7 @@ layout: default
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
-                    {% if page.next.url %}
+                    {% if page.next.url %}<!--wld这里的逻辑有点不符合常理-->
                     <li class="previous">
                         <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">
                         &larr; Previous<br>
