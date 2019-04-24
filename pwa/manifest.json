@@ -1,6 +1,6 @@
 {
-  "name": "Hux Blog",
-  "short_name": "Hux Blog",
+  "name": "山大王的博客",
+  "short_name": "山大王的博客",
   "description": "About an engineer & designer who loves web.",
   "icons": [{
     "src": "icons/128.png",
