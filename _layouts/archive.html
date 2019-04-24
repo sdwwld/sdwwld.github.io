@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% include intro-header.html type='page' short=true %}
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+<!-- NO SIDEBAR -->
+    <!-- PostList Container -->
+ <!--wld	col-lg一般用于大屏设备，
+			(min-width:1200px);
+
+			col-md一般用于中屏设备，
+			(min-width：992px);
+
+			col-sm一般用于小屏设备，
+			(min-width：768px);
+
+			col-xs用于超小型设备，
+			(max-width：768px); -->
+	   <!-- https://blog.csdn.net/qq_38052210/article/details/80262356
+			后面跟数字是几，也就是占几份,
+			比如是4，也就是一行可以显示3个;
+			或者12，就是一行可以显示1个。 -->
+	<!--	col-*-offset使用的是margin-left属性实现右移 
+			col-*-push使用的是float + left属性实现右移-->
+            <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 postlist-container">
+                {{ content }}
+            </div>
+	</div>
+</div>
+
+{% if site.page-mathjax %}
+<!-- Add support for Mathjax by Voleking-->
+<!-- If you want to see formulars well in post preview, Maybe you should add this.-->
+<!-- However, most of the time formulars may not appear in the post preview, you can delete it.-->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+{% endif %}
