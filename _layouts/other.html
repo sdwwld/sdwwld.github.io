@@ -7,7 +7,7 @@ layout: default
 
 <!-- Main Content -->
 <div class="container">
-
+	<div class="row">
 <!-- NO SIDEBAR -->
     <!-- PostList Container -->
  <!--wld	col-lg一般用于大屏设备，
@@ -27,8 +27,10 @@ layout: default
 			或者12，就是一行可以显示1个。 -->
 	<!--	col-*-offset使用的是margin-left属性实现右移 
 			col-*-push使用的是float + left属性实现右移-->
+            <div class="col-lg-8 col-lg-push-1 col-md-10 col-md-push-1 postlist-container">
                 {{ content }}
-     
+            </div>
+	</div>
 </div>
 
 {% if site.page-mathjax %}
