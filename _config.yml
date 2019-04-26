@@ -106,10 +106,10 @@ recommends: [
     #     href: "http://su.gallery/"
     # },{
         title: "山大王",
-        href: "https://blog.csdn.net/abcdef314159"
+        href: "https://blog.csdn.net/abcdef314159  target=_blank"
     },{
         title: "罗升阳",
-        href: "https://me.csdn.net/Luoshengyang"
+        href: "https://me.csdn.net/Luoshengyang  target=_blank"
     },{
         title: "邓凡平",
         href: "https://me.csdn.net/innost"
