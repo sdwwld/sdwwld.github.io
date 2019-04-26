@@ -109,39 +109,42 @@ recommends: [
         href: "https://blog.csdn.net/abcdef314159"
     },{
         title: "罗升阳",
-        href: "https://me.csdn.net/Luoshengyang"
+        href: "https://blog.csdn.net/luoshengyang?t=1" 
     },{
         title: "邓凡平",
-        href: "https://me.csdn.net/innost"
+        href: "https://blog.csdn.net/innost?t=1"
     },{
         title: "gityuan",
-        href: "http://gityuan.com/"
+        href: "http://gityuan.com"
     },{
         title: "任玉刚",
-        href: "https://me.csdn.net/singwhatiwanna"
+        href: "https://blog.csdn.net/singwhatiwanna?t=1"
     },{
         title: "结构之法算法之道博主",
-        href: "https://me.csdn.net/v_july_v"
+        href: "https://blog.csdn.net/v_july_v?t=1"
     },{
         title: "尼古拉斯_赵四",
-        href: "https://me.csdn.net/jiangwei0910410003"
+        href: "https://blog.csdn.net/jiangwei0910410003?t=1" 
     },{
         title: "牛搞",
-        href: "https://me.csdn.net/nkmnkm"
+        href: "https://blog.csdn.net/niu_gao?t=1" 
     },{
         title: "鸿洋",
-        href: "https://me.csdn.net/lmj623565791"
+        href: "https://blog.csdn.net/lmj623565791?t=1"
     },{
         title: "工匠若水",
-        href: "https://me.csdn.net/yanbober"
+        href: "https://blog.csdn.net/yanbober?t=1"
     },{
         title: "guolin",
-        href: "https://me.csdn.net/sinyu890807"
+        href: "https://blog.csdn.net/guolin_blog?t=1"
     },{
         title: "xiaanming",
-        href: "https://me.csdn.net/xiaanming"
+        href: "https://blog.csdn.net/xiaanming?t=1"
     },{
         title: "何俊林",
-        href: "https://me.csdn.net/ch97ckd"
+        href: "https://blog.csdn.net/ch97ckd?t=1"
+    },{
+        title: "刘望舒",
+        href: "https://blog.csdn.net/itachi85?t=1"
     }
 ]
