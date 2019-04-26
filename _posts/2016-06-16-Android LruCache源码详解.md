@@ -8,18 +8,16 @@ tags:
   - 源码
 ---
 
-﻿﻿尊重原创，[转载请标明出处](http://blog.csdn.net/abcdef314159)    <http://blog.csdn.net/abcdef314159>
-
 之前的两篇我们详细分析了HashMap和LinkedHashMap，就是为了讲解LruCache做铺垫的，这一篇我们来分析一下Android中常用的缓存类LruCache，我们知道Android中的优化比较多，其中就有一个关于图片缓存的问题，如果处理不好很有可能会出现ANR。在讲解之前我们最好先看一下这个类的注释，由于比较多，我只贴出一部分
 
 ```java
- * <pre>   {@code
+
  *   int cacheSize = 4 * 1024 * 1024; // 4MiB
  *   LruCache<String, Bitmap> bitmapCache = new LruCache<String, Bitmap>(cacheSize) {
  *       protected int sizeOf(String key, Bitmap value) {
  *           return value.getByteCount();
  *       }
- *   }}</pre>
+ *   }}
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)他初始化了一个4M大小的空间，一般情况下我们是使用最大内存的1/4或1/8，如果像上面那样写也是可以的。
@@ -300,4 +298,3 @@ public class BitmapLRUCache implements ImageCache {
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)上面的entryRemoved方法其实是可以实现二级缓存的，我们可以在手机的SD中开辟一块空间，用来保存上面entryRemoved方法中移除的图片。逻辑是这样的，当我们需要图片的时候首先从LruCache中取，如果没有就从SD中取，如果SD卡中也没有就从网络上下载，下载完之后就保存到LruCache中，如果LruCache中图片大小达到上限或者调用remove方法就会执行LruCache的entryRemoved方法，在entryRemoved方法中我们可以把移除的图片存储到SD卡中，这样下一次取的时候还是按照这个顺序来取。网上还有一些实现方法和上面的区别是他没有重写entryRemoved方法，当从网上下载完的时候，在LruCache和SD中都保存了一份，这样做也是可以的。我目前没有发现google的实现SD卡缓存的类，不过第三方的倒是有很多，比如thinkandroid的DiskLruCache类，SmartAndroid的LruDiscCache类还有KJFrameForAndroid的DiskCache类都实现了磁盘缓存。大家有兴趣的话可以自己去看一下，这里就不在介绍。
-
