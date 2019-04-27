@@ -208,39 +208,192 @@ HashMap中是允许key为null的，我们看上面的2-4行，如果key为null�
 
 我们看到entryForNullKey其实就是个HashMapEntry
 
+```
+    transient HashMapEntry<K, V> entryForNullKey;
+```
 
+我们再来看一下如果entry == null，说明HashMap中没有key为null的HashMapEntry，那么就造一个,然后size和modCount都要加一，size是 HashMap的大小，modCount是指修改的次数，主要在循环输出的时候用来判断HashMap是否有改动，如果有改动就会报ConcurrentModificationException异常，我们来看一下addNewEntryForNullKey的源码
 
+```
+    void addNewEntryForNullKey(V value) {
+        entryForNullKey = new HashMapEntry<K, V>(null, value, 0, null);
+    }
+```
 
+我们发现代码量很少，就一行，初始化了一个HashMapEntry对象，然后把value存进去，其他的都为null或0，这就是一个key为null的HashMapEntry，在上面我们看到如果存在key为null的HashMapEntry就会把entryForNullKey的value修改，然后返回原来的value，这之前又调用了preModify方法，其实他是个空方法，什么都没做,但他会在他的子类LinkedHashMap中调用，key为null的我们分析完了。下面我们再来分析key不为null的情况，我们还看上面的put方法，在第6行计算出hash值，第8行根据计算的hash值算出存储的位置，其实第8行很有讲究，设计的非常巧妙，我们在前面说过HashMap初始化大小的时候都是2的n次方，原因就在这，因为2的n次方换成二进制就是前面有个1后面全是0，如果减去1就变成之前为1的位和他前面的都是0，而他后面的全是1，举个简单例子，2的3次方是8，换成二进制就是前面有个1后面有3个0，一共4位，如果减去1就变成后面3位都是1，前面的都为0，如果在与hash值与运算，那么算得结果永远都是0到2的n次方减1之间，永远都不会出现数组越界。我们看到上面put方法中的第8行，通过与运算获得存放数组的下标index，然后在10到15行，通过查找他所在的那个数组有没有存放过key值相同的，如果有就把他替换，然后返回原来的value，比较的时候首先是通过hash值，如果hash值相同则调用equals方法，这里要说一下，如果hash值不同，则entry肯定不同，如果hash相同，则entry可能相同也可能不同，需要调用equals进行比较，相反如果equals相同则hash值肯定相同，如果equals不相同则hash值有可能相同也有可能不相同。我们再来看一下put的20到23行，如果放进去之后大小大于阈值则会扩容，这个阈值threshold我们刚才在上面讲过，大概是数组长度的75%，扩容调用了doubleCapacity方法，因为扩容之后老数据还要重新排放，这个源码我们最后在分析，扩容之后然后调用addNewEntry方法，把它存进去，我们来看一下他的源码
 
+```
+    void addNewEntry(K key, V value, int hash, int index) {
+        table[index] = new HashMapEntry<K, V>(key, value, hash, table[index]);
+    }
+```
 
+代码很简单，就一行，我们看到前面有个table[index]，后面也有一个，大家不要晕，代码是先要执行后面的，执行完之后然后在赋值给前面的，我们上面讲过HashMapEntry构造函数的最后一个参数就是他的next，也是HashMapEntry类型的，如果原来没有就为空，就把当前new的HashMapEntry放到数组中，如果有就把他挂到当前new的HashMapEntry后面，然后再把new的这个HashMapEntry放到数组中，因为HashMap是数组加链表的形式存放的，我给大家画一个图便于理解。
 
+![](/img/2016/20160417233931347.jpg)
 
+首先是根据Hash值找到所在数组的下标，因为不同的Hash值通过数组长度的与运算可能会有相同的结果，如果原来数组中没有就把它存进去，如果原来数组有了就判断他的key值是否相同，如果相同就把他替换，如果不相同就把原来数组这个位置的挂载到当前的下面，然后把当前的放到数组中的这个位置。下面我们在看它的另一个方法get
 
+```
+    public V get(Object key) {
+        if (key == null) {
+            HashMapEntry<K, V> e = entryForNullKey;
+            return e == null ? null : e.value;
+        }
+ 
+        int hash = Collections.secondaryHash(key);
+        HashMapEntry<K, V>[] tab = table;
+        for (HashMapEntry<K, V> e = tab[hash & (tab.length - 1)];
+                e != null; e = e.next) {
+            K eKey = e.key;
+            if (eKey == key || (e.hash == hash && key.equals(eKey))) {
+                return e.value;
+            }
+        }
+        return null;
+    }
+```
 
+上面代码也很简单，首先如果key为null则第2-5行是取出key为null的value，我们主要来看9-15行，第9行通过计算的hash值找到所在的数组的下标，然后取出HashMapEntry，如果不为空就比较key值是否相同，如果相同就返回，不相同就找它的next下一个，就像上面HashMap结构图中的那样，首先要找到所在的位置，然后从上往下比较，找到则返回value，否则返回null。
+我们再来看一下HashMap的还一个方法containsKey和上面的get差不多，只不过他是个判断，但并不会返回value的值，我们简单看一下
 
+```
+    @Override public boolean containsKey(Object key) {
+        if (key == null) {
+            return entryForNullKey != null;
+        }
+ 
+        int hash = Collections.secondaryHash(key);
+        HashMapEntry<K, V>[] tab = table;
+        for (HashMapEntry<K, V> e = tab[hash & (tab.length - 1)];
+                e != null; e = e.next) {
+            K eKey = e.key;
+            if (eKey == key || (e.hash == hash && key.equals(eKey))) {
+                return true;
+            }
+        }
+        return false;
+    }
+```
 
+还有一个判断是否包含指定的value的方法public boolean containsValue(Object value)，这个其实和上面差不多，我们就不在拿出来分析，我们再看capacityForInitSize这个方法
 
+```
+    static int capacityForInitSize(int size) {
+        int result = (size >> 1) + size; // Multiply by 3/2 to allow for growth
+ 
+        // boolean expr is equivalent to result >= 0 && result<MAXIMUM_CAPACITY
+        return (result & ~(MAXIMUM_CAPACITY-1))==0 ? result : MAXIMUM_CAPACITY;
+    }
+```
 
+这个方法是扩容用的，根据传入的map的大小进行扩容，扩容的大小是传入size的1.5倍，最后一行是根据扩容的大小判断返回值，如果把它全部换成二进制形式就很明白了，就是如果扩容的大小大于1<<30则返回1<<30(MAXIMUM_CAPACITY),否则就返回扩容后的大小。他只是返回一个size，其实真正的扩容是ensureCapacity这个方法，
 
+```
+     *
+     *  <p>This method is called only by putAll.
+     */
+    private void ensureCapacity(int numMappings) {
+        int newCapacity = Collections.roundUpToPowerOfTwo(capacityForInitSize(numMappings));
+        HashMapEntry<K, V>[] oldTable = table;
+        int oldCapacity = oldTable.length;
+        if (newCapacity <= oldCapacity) {
+            return;
+        }
+        if (newCapacity == oldCapacity * 2) {
+            doubleCapacity();
+            return;
+        }
+ 
+        // We're growing by at least 4x, rehash in the obvious way
+        HashMapEntry<K, V>[] newTable = makeTable(newCapacity);
+        if (size != 0) {
+            int newMask = newCapacity - 1;
+            for (int i = 0; i < oldCapacity; i++) {
+                for (HashMapEntry<K, V> e = oldTable[i]; e != null;) {
+                    HashMapEntry<K, V> oldNext = e.next;
+                    int newIndex = e.hash & newMask;
+                    HashMapEntry<K, V> newNext = newTable[newIndex];
+                    newTable[newIndex] = e;
+                    e.next = newNext;
+                    e = oldNext;
+                }
+            }
+        }
+    }
+```
 
+这个方法是私有的，我们看到最上面有个注释，告诉我们这个方法只能被putAll方法调用，我们再来看一下putAll这个方法
 
+```
+    @Override public void putAll(Map<? extends K, ? extends V> map) {
+        ensureCapacity(map.size());
+        super.putAll(map);
+    }
+```
 
+代码很简单，我们就不在分析，我们还看上面的ensureCapacity方法，我们来看第5行，这个方法我们上面说过，要必须保证newCapacity是2的n次方，接着看12行，如果初始化的空间大小是原来大小2倍，就会调用doubleCapacity方法，第17行根据newCapacity初始化新数组，第20-29行把原来的从新计算存入到新的数组中，其中第22行取出原来数组下标为i元素的oldNext，23行通过hash值计算e在新数组的下标newIndex，第24行取出新数组下标为newIndex的元素newNext，第25行把原来数组下标为i的元素e存入到新的数组中，26行把原来新数组下标为newIndex的元素newNext挂载到现在新数组下标为newindex的元素下面，可能听起来比较绕，我们看着上面的图来说，比如当我们把一个新的元素存放到下标为1的数组中的时候，由于原来这个位置就已经有元素，所以我们把原来这个位置的元素保存起来，然后把新的元素存进去，最后再把原来的这个位置的元素挂载在这个新的元素下面。第27行把上面取出的原来数组的下一个元素赋给e，如果不为空则继续循环。
 
+HashMap还有一个public V remove(Object key)方法，是根据hash值找到所在的数组位置，然后再根据链表的连接和断开来操作的，这里就不在详解，我们来看最后一个方法doubleCapacity，这个方法是设计的精华，一定要认真研读，
 
+```
+    private HashMapEntry<K, V>[] doubleCapacity() {
+        HashMapEntry<K, V>[] oldTable = table;
+        int oldCapacity = oldTable.length;
+        if (oldCapacity == MAXIMUM_CAPACITY) {
+		//如果原来超过设置的最大值，不在扩容，直接返回
+            return oldTable;
+        }
+        int newCapacity = oldCapacity * 2;//容量扩大2倍
+        HashMapEntry<K, V>[] newTable = makeTable(newCapacity);
+        if (size == 0) {//如果原来HashMap的size为0，则直接返回
+            return newTable;
+        }
+ 
+        for (int j = 0; j < oldCapacity; j++) {
+            /*
+             * Rehash the bucket using the minimum number of field writes.
+             * This is the most subtle and delicate code in the class.
+             */
+            HashMapEntry<K, V> e = oldTable[j];
+            if (e == null) {
+                continue;
+            } 
+	    //下面设计的非常巧妙，我们一定要认真看一下，它首先取得高位的值highBit，
+	    //我们前面已经分析HashMap的容量必须是2的n次方，所以oldCapacity肯定是2的
+	    //n次方，换成二进制就是前面有个1后面全是0，通过hash值的与运输取得高位，
+	    //然后通过下面的（j | highBit）运输找到数组的下标，把e存进去，我们仔细
+	    //看highbit通过hash值的与运输可能为0也可能为1，在之前我们存放的时候都是
+	    //通过hash & (tab.length - 1)计算的，仔细想一下当我们把容量扩大为2倍的时
+	    //候,区别在哪，区别就是在最高位，因为扩大2倍之后最高位往左移动了一位，所以
+	    //这里面通过计算最高位然后通过与运输把元素存进去设计的非常好。
+            int highBit = e.hash & oldCapacity;
+            HashMapEntry<K, V> broken = null;
+            newTable[j | highBit] = e;
+            for (HashMapEntry<K, V> n = e.next; n != null; e = n, n = n.next) {
+                int nextHighBit = n.hash & oldCapacity;
+		//下面这些就非常简单了，就是当前元素下面如果挂载的还有元素就重新排放，
+		//我们看到是否重新排放判断的依据是nextHighBit != highBit，这个就非常好
+		//理解,如果相等说明这两个元素肯定还位于数组的同一位置以链表的形式存在，
+		//如果不相等肯定位于数组的不同的两个位置，因为如果不相等也只能是高位不同
+		//所以判断的也是高位，举个例子，比如数组大小为8就是1000，扩大一倍就是16，
+		//二进制为10000，假如在原来数组的下标为001(二进制)，如果不同，那他肯定为
+		//1001(二进制)，高位不同
+                if (nextHighBit != highBit) {
+                    if (broken == null)
+                        newTable[j | nextHighBit] = n;
+                    else
+                        broken.next = n;
+                    broken = e;
+                    highBit = nextHighBit;
+                }
+            }
+            if (broken != null)
+                broken.next = null;
+        }
+        return newTable;
+    }
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+然后剩下的就是HashMap的迭代问题，这个大家自己看看就行了，这里就不在分析，OK，到目前为止HashMap的源码就基本分析完了。
 
