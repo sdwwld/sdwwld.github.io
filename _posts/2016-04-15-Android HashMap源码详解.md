@@ -8,7 +8,6 @@ tags:
   - 源码
 ---
 ## 正文
-
 这一篇来分析一下HashMap的源码，为了在后面讲解Android缓存机制做准备，因为我们知道在Android的缓存机制中无论是用第三方的还是我们自己写的，一般都会用到LruCache或者LinkedHashMap类，而LruCache里面封装的又是LinkedHashMap，LinkedHashMap又是HashMap的子类，所以这一篇我们有必要把HashMap的源码分析一下，然后最终再来讲解一下Android的缓存机制。HashMap的构造方法比较多，我们就随便挑两个最常用的来分析，其实其他的也都差不多，我们看一下
 
 ```
@@ -158,7 +157,7 @@ MINIMUM_CAPACITY往右移动一位，大小变为2了，我们再来看一下Has
 
 我们看到其实就是初始化table，这个table是一个HashMapEntry类型的数组，就是存放HashMapEntry的，然后我们还看到threshold这样的一个值，其实他就是数组存放的阈值，他不像ArrayList等数组满了之后再扩容，HashMap是判断当前的HashMapEntry对象如果超过threshold就会扩容，他扩容的最终大小必须是2的n次方，这一点要牢记，待会会讲到，我们看到threshold值大概是newCapacity的3/4也就是数组长度的75%。
 到现在为止HashMap的初始化我们已经基本上讲完了，我们看到HashMap源码中的方法也比较多，我们就捡我们常用的的几个来分析，我们先看一下put方法
-
+## put
 ```
     @Override public V put(K key, V value) {
         if (key == null) {
