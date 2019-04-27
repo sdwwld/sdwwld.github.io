@@ -8,7 +8,7 @@ catalog: true
 tags:
   - 源码
 ---
-> “浮生恰似冰底水，日夜东流人不知。”
+> “浮生恰似冰底水，日夜东流人不知。”	--杜牧
 ## 正文
 这一篇来分析一下HashMap的源码，为了在后面讲解Android缓存机制做准备，因为我们知道在Android的缓存机制中无论是用第三方的还是我们自己写的，一般都会用到LruCache或者LinkedHashMap类，而LruCache里面封装的又是LinkedHashMap，LinkedHashMap又是HashMap的子类，所以这一篇我们有必要把HashMap的源码分析一下，然后最终再来讲解一下Android的缓存机制。HashMap的构造方法比较多，我们就随便挑两个最常用的来分析，其实其他的也都差不多，我们看一下
 
