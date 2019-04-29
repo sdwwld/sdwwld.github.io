@@ -25,10 +25,8 @@ tags:
 
 这个类可以画几何图形，文本和bitmap。由于这个类的native方法和@hide方法比较多，这里就挑一些在工作中可能常用到的方法来讲解。先来看一下Paint的style，共有3种
 
-Paint.Style.FILL：填充内部
-
-Paint.Style.FILL_AND_STROKE  ：填充内部和描边
-
+Paint.Style.FILL：填充内部  
+Paint.Style.FILL_AND_STROKE  ：填充内部和描边  
 Paint.Style.STROKE  ：描边
 
 我们看一下效果
