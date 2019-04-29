@@ -14,10 +14,8 @@ tags:
 
 ## 正文
 
-紧接前一篇几个问题的验证，在看之前最好把上一篇的<a href="https://androidboke.com/2016/04/11/Android-onTouchEvent%E5%92%8ConInterceptTouchEvent%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E8%AF%A6%E8%A7%A3(%E4%BA%8C)" target="_blank">Android onTouchEvent和onInterceptTouchEvent事件分发详解(二)</a>先看一下。
-
-在上一篇我们根据源码分析了Android事件的分发机制，在最后总结了几个问题，在这一篇我们将为大家逐一验证。
-
+紧接前一篇几个问题的验证，在看之前最好把上一篇的<a href="https://androidboke.com/2016/04/11/Android-onTouchEvent%E5%92%8ConInterceptTouchEvent%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E8%AF%A6%E8%A7%A3(%E4%BA%8C)" target="_blank">Android onTouchEvent和onInterceptTouchEvent事件分发详解(二)</a>先看一下。  
+在上一篇我们根据源码分析了Android事件的分发机制，在最后总结了几个问题，在这一篇我们将为大家逐一验证。  
 总共有3个类，一个Activity，一个ViewGroup，一个View
 
 ## （1）在Activity中的代码为
@@ -112,8 +110,7 @@ DOWN和UP只会触发一次，MOVE可能会触发很多次，我们知道就行�
 
 ![](/img/blog/2016/20160415112637577.png)
 
-我们看到TextView的onTouchEvent消耗了事件（执行了DOWM,MOVE,UP事件），就不会再往上抛，所以ViewGroup的onTouchEvent和Activity的onTouchEvent就不会再触发，此后所有的事件都会交由它来处理。
-
+我们看到TextView的onTouchEvent消耗了事件（执行了DOWM,MOVE,UP事件），就不会再往上抛，所以ViewGroup的onTouchEvent和Activity的onTouchEvent就不会再触发，此后所有的事件都会交由它来处理。  
 （3）我们在看另外一种情况，把上面TextView的onTouchEvent返回默认值（false）让ViewGroup的onTouchEvent放回true，
 
 ## onInterceptTouchEvent
@@ -133,8 +130,7 @@ DOWN和UP只会触发一次，MOVE可能会触发很多次，我们知道就行�
 
 ![](/img/blog/2016/20160415130701960.png)
 
-我们看到TextView只执行了DOWM事件，因为返回的是false，表示事件没有被消耗，就会往上抛，交给ViewGroup，但ViewGroup的onTouchEvent返回的是true，表示事件被他消耗了，就不会再往上抛，所以就执行了后面的MOVE，UP事件，此后的一系列事件也不会再往下传递了，每次传递到ViewGroup的时候就直接调用它的onTouchEvent方法。
-
+我们看到TextView只执行了DOWM事件，因为返回的是false，表示事件没有被消耗，就会往上抛，交给ViewGroup，但ViewGroup的onTouchEvent返回的是true，表示事件被他消耗了，就不会再往上抛，所以就执行了后面的MOVE，UP事件，此后的一系列事件也不会再往下传递了，每次传递到ViewGroup的时候就直接调用它的onTouchEvent方法。  
 （4）我们在（3）的基础上，让onInterceptTouchEvent返回true，在看一下
 
 ## onInterceptTouchEvent
@@ -153,14 +149,12 @@ DOWN和UP只会触发一次，MOVE可能会触发很多次，我们知道就行�
 
 ![](/img/blog/2016/20160415131953283.png)
 
-我们看到TextView的方法根本就没有执行，这时TextView的方法无论放回true还是false都没有任何影响，因为ViewGroup的onInterceptTouchEvent方法返回true，表示事件被他拦截，就不会再往下传递，我们还看到ViewGroup的onInterceptTouchEvent方法只执行了一次，因为已经被拦截了，后续的一系列事件就都会交给他，就不需要在拦截了，因为ViewGroup的onTouchEvent返回true，事件被他消耗，就不在往上抛。
-
+我们看到TextView的方法根本就没有执行，这时TextView的方法无论放回true还是false都没有任何影响，因为ViewGroup的onInterceptTouchEvent方法返回true，表示事件被他拦截，就不会再往下传递，我们还看到ViewGroup的onInterceptTouchEvent方法只执行了一次，因为已经被拦截了，后续的一系列事件就都会交给他，就不需要在拦截了，因为ViewGroup的onTouchEvent返回true，事件被他消耗，就不在往上抛。  
 （5）我们在（4）的基础上，让onTouchEvent返回false，在看一下打印的log
 
 ![](/img/blog/2016/20160415132811271.png)
 
-因为ViewGroup拦截，所以没有传递到TextView，因为ViewGroup没有消耗事件，所以往上抛到Activity，所以事件最终被Activity给处理了（执行了MOVE，UP事件）
-
+因为ViewGroup拦截，所以没有传递到TextView，因为ViewGroup没有消耗事件，所以往上抛到Activity，所以事件最终被Activity给处理了（执行了MOVE，UP事件）  
 （6）关于requestDisallowInterceptTouchEvent事件，这里我们再来研究一下，我们让所有的都返回默认，然后让ViewGroup的onInterceptTouchEvent方法返回true（表示拦截，默认情况下就不会往下传递），我们让TextView的onTouchEvent方法返回true（表示事件被他消耗），然后改写TextView的dispatchTouchEvent方法
 
 ```
@@ -190,7 +184,7 @@ DOWN和UP只会触发一次，MOVE可能会触发很多次，我们知道就行�
             }
 ```
 
-表示在按下的时候调用了resetTouchState方法，我们再看一下这个方法
+表示在按下的时候调用了resetTouchState方法，我们再看一下这个方法  
 
 ## resetTouchState
 
@@ -224,6 +218,5 @@ DOWN和UP只会触发一次，MOVE可能会触发很多次，我们知道就行�
 
 ![](/img/blog/2016/20160415150355903.png)
 
-我们看到TextView只执行了DOWN和CANCEL事件，MOVE和UP事件都被ViewGroup拦截了，由于没有消耗，直接往上抛，交给Activity处理。且ViewGroup的onInterceptTouchEvent方法在UP事件的时候也没有执行，因为在执行MOVE的时候就已经返回了True，所以后面的UP事件就不会再触发。
-
+我们看到TextView只执行了DOWN和CANCEL事件，MOVE和UP事件都被ViewGroup拦截了，由于没有消耗，直接往上抛，交给Activity处理。且ViewGroup的onInterceptTouchEvent方法在UP事件的时候也没有执行，因为在执行MOVE的时候就已经返回了True，所以后面的UP事件就不会再触发。  
 OK，到目前为止，Activity的事件拦截机制就分析完了。
