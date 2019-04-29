@@ -36,7 +36,7 @@ public class LayoutInflaterTestActivity extends Activity {
 		LayoutInflaterTestView ll_v = (LayoutInflaterTestView) mainView
 				.findViewById(R.id.ll_);
 		View mView = ll_v.getLayoutView();
-		//在外面再嵌套一层，因为如果不嵌套的话mView的Params将失去作用。待会我们把上一篇总结的都验证完之后，我在为大家分析。
+		// 在外面再嵌套一层，因为如果不嵌套的话mView的Params将失去作用。待会我们把上一篇总结的都验证完之后，我在为大家分析。
 		FrameLayout rl = new FrameLayout(this);
 		rl.addView(mView);
 		
@@ -78,7 +78,7 @@ public class LayoutInflaterTestView extends LinearLayout {
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		layoutView = (View) mInflater.inflate(
 				R.layout.activity_layout_inflater_test, null, false);
-		//打印layoutView类型，
+		// 打印layoutView类型，
 		Log.d("wld____________", layoutView + "");
 	}
  
