@@ -11,6 +11,8 @@ tags:
 
 之前的两篇我们详细分析了HashMap和LinkedHashMap，就是为了讲解LruCache做铺垫的，这一篇我们来分析一下Android中常用的缓存类LruCache，我们知道Android中的优化比较多，其中就有一个关于图片缓存的问题，如果处理不好很有可能会出现ANR。在讲解之前我们最好先看一下这个类的注释，由于比较多，我只贴出一部分
 
+## 用法
+
 ```java
 
  *   int cacheSize = 4 * 1024 * 1024; // 4MiB
@@ -44,6 +46,8 @@ tags:
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)如果是Bitmap的话我们就返回Bitmap的大小。我们来看一下LruCache的构造方法
 
+## LruCache
+
 ```java
     public LruCache(int maxSize) {
         if (maxSize <= 0) {
@@ -55,6 +59,8 @@ tags:
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)我们看到里面封装的是LinkedHashMap，最后一个参数是true，说明他的双向环形链表是按照访问顺序来存储的。在上一篇[《Android LinkedHashMap源码详解》](http://blog.csdn.net/abcdef314159/article/details/51178860)中讲到accessOrder参数的时候有提到过，我们来看一下他的一些方法，我们首先看一下public void trimToSize(int maxSize)这个方法
+
+## trimToSize
 
 ```java
     /**
@@ -97,6 +103,8 @@ tags:
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法其实就是按照LRU算法移除最先加入的元素，也就是最少访问的老数据，直到他的size小于maxSize为止，我们看到18-20行，如果小于直接退出循环，22-25行，如果为空说明是map为null，直接退出循环。eldest()方法得到的是最老的，也是访问量最少的元素，所以根据LRU算法是最先移除的。刚开始看的时候一直不理解，感觉22-25行纯属多余，因为正常的逻辑是maxSize一般是大于0的，如果18-20行成立的话，那么22-25行肯定成立，后来看到上面的注释才明白，maxSize如果为-1,则移除全部。我们看到第29行移除，然后30行再计算一下剩余的size，然后在通过不断的循环执行到上面第19行，直到size小于maxSize才终止循环。移除的时候调用的是HashMap的remove方法，并且在remove内部调用了postRemove方法，这个方法被LinkedHashMap覆写了，移除的同时也把他从双向环形链表中删除了，我们来看一下safeSizeOf方法，其实就是调用的上面sizeOf方法
 
+## safeSizeOf
+
 ```java
     private int safeSizeOf(K key, V value) {
         int result = sizeOf(key, value);
@@ -108,6 +116,8 @@ tags:
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)移除的最后调用entryRemoved方法，这个方法是空方法，我们也可以在这里实现二级缓存。接着我们来看一下put方法，
+
+## put
 
 ```java
     public final V put(K key, V value) {
@@ -142,6 +152,8 @@ tags:
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法比较简单，我们再来看一下另外一个方法public final V remove(K key)
 
+## remove
+
 ```java
     public final V remove(K key) {
         if (key == null) {
@@ -168,6 +180,8 @@ tags:
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法和上面的put差不多，我们在看另外一个方法public final V get(K key)
+
+## get
 
 ```java
     public final V get(K key) {
@@ -235,6 +249,8 @@ tags:
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)还有最后一个方法entryRemoved
 
+## entryRemoved
+
 ```java
 //entryRemoved方法是个空方法，什么都没实现，evicted如果是true则表示是为了释放空间调用的，
 //主要是在trimToSize方法中调用，如果是false则一般是被put，get，remove等方法调用。
@@ -242,6 +258,8 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)OK，到目前为止LruCache的方法已经基本分析完毕，我们就来研究一下LruCache怎么使用，一般情况下我们主要用来存储bitmap的比较多，我们知道bitmap缓存的第三方框架比较多，我们就随便挑一个，我们现在最常用的volley框架一般是用来网络请求的，其实它里面也封装了图片的缓存类ImageLoader，我们看到他里面有个接口，我们看一下
+
+## ImageCache
 
 ```java
     /**
@@ -256,6 +274,8 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)他有一个put和get方法，我们看上面注释的最后一行，意思是推荐使用LruCache实现。我们可以这样来实现
+
+## BitmapLRUCache
 
 ```java
 package com.wld;
