@@ -1,4 +1,4 @@
-#### 注：有些国外网站可能需要VPN才能打开
+注：有些国外网站可能需要VPN才能打开
 
 工具  
 <a href="http://www.bejson.com" target="_blank">bejson</a> ，<a href="https://search.maven.org" target="_blank">仓库</a> ，<a href="https://www.androiddevtools.cn" target="_blank">androiddevtools</a>  ，<a href="https://ydmmocoo.github.io" target="_blank">AS插件</a>  ，<a href="https://github.com/mzlogin/awesome-adb" target="_blank">githubADB</a>  ，<a href="http://adbshell.com/commands" target="_blank">adbshell</a>    ，<a href="http://vimcdoc.sourceforge.net/doc/help.html" target="_blank">vim手册</a> ，<a href="https://www.mdeditor.com" target="_blank">MarkDown在线编译器</a>  ，<a href="http://mahua.jser.me" target="_blank">MarkDown在线显示器</a>   ，<a href="https://www.gushiwen.org/shiju" target="_blank">古诗名句</a>  ，  
@@ -15,19 +15,3 @@
 工作  
 <a href="https://www.indeed.co.uk" target="_blank">indeed</a>  
 
-
-
-<div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <p class="copyright text-muted">
-            <center> 
-                如果觉得有用就给个star吧
-                <iframe
-                    style="margin-left: 2px; margin-bottom:-5px;"
-                    frameborder="0" scrolling="0" width="100px" height="20px"
-                    src="https://ghbtns.com/github-btn.html?user=sdwwld&repo=module&type=star&count=true" >
-                </iframe>
-            </center>
-        </p>
-    </div>
-</div>
