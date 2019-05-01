@@ -1428,7 +1428,7 @@ img::-moz-selection {
   line-height: 28px;
   margin: 0 2px;
   margin-bottom: 8px;
-  background: #f3f5f5;
+  background: #000000;
 }
 #tag_cloud a:hover,
 #tag_cloud .tag:hover,
@@ -1453,7 +1453,7 @@ img::-moz-selection {
 #tag_cloud .tag.tag-button--all:active,
 #tag_cloud a.tag-button--all.focus,
 #tag_cloud .tag.tag-button--all.focus {
-  background-color: #B4932F !important;
+  background-color: #000000 !important;
 }
 @media only screen and (min-width: 768px) {
   #tag_cloud {
