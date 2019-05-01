@@ -44,7 +44,7 @@ description: "生命不息 博客不止"
             <span>&laquo;</span>
         {% else %}
             {% if paginator.previous_page == 1 %}
-            <a href="{{ site.baseurl}}/article/">
+            <a href="/">
             {% else %}
             <a href="{{ site.baseurl}}/article/{{ paginator.previous_page }}">
             {% endif %}
@@ -76,51 +76,6 @@ description: "生命不息 博客不止"
         </li>
         <li>
             <a href="{{ site.baseurl}}/article/{{paginator.total_pages}}">
-                <span>末页</span>
-            </a>
-        </li>
-        <li class="disabled">
-            <span>第{{paginator.page}}页 / 共{{paginator.total_pages}}页</span>
-        </li>
-</ul>
-
-
-<ul class="pagination">
-        <li>
-            <a href="/">
-                <span>首页2</span>
-            </a>
-        </li>			
-        <li>
-		 {% if paginator.page == paginator.total_pages %}
-            <span>&laquo;</span>
-            {% else %}
-            <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-                <span>&laquo;</span>
-            </a>
-         {% endif %}
-        </li>		
-				
-        {% for i in (1..paginator.total_pages) limit:10 offset:{{paginator.page-1}} %}
-            {% if paginator.page == i %}
-        <li class="active">
-            {% else %}
-        <li>
-            {% endif %}
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', i }} ">{{i}}</a>
-        </li>
-			{% endfor %}						
-        <li>
-            {% if paginator.page == paginator.total_pages %}
-            <span>&raquo;</span>
-            {% else %}
-            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-                <span>&raquo;</span>
-            </a>
-            {% endif %}
-        </li>
-        <li>
-            <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', paginator.total_pages }}">
                 <span>末页</span>
             </a>
         </li>
