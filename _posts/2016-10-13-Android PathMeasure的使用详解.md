@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Android setContentView方法解析（一）"
-subtitle: 'Android setContentView方法源码深入解析'
+title: "Android PathMeasure的使用详解"
+subtitle: 'Android PathMeasure的使用详解'
 author: "山大王"
 header-style: text
 catalog: true

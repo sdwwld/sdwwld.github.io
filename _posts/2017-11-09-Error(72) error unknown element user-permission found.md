@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Android setContentView方法解析（一）"
-subtitle: 'Android setContentView方法源码深入解析'
+title: "Error(72) error unknown element user-permission found"
+subtitle: 'Error(72) error unknown element user-permission found'
 author: "山大王"
 header-style: text
 catalog: true
