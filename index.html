@@ -14,7 +14,7 @@ description: "生命不息 博客不止"
             <span>&laquo;</span>
         {% else %}
             {% if paginator.previous_page == 1 %}
-            <a href="/">
+            <a href="{{site.baseurl}}/">
             {% else %}
             <a href="{{ site.baseurl}}/article/{{ paginator.previous_page }}">
             {% endif %}
@@ -29,7 +29,7 @@ description: "生命不息 博客不止"
         <li>
             {% endif %}
             {% if i == 1 %}
-            <a href="/">{{i}}</a>
+            <a href="{{site.baseurl}}/">{{i}}</a>
             {% else %}
             <a href="{{site.baseurl}}/article/{{i}}">{{i}}</a>
             {% endif %}
