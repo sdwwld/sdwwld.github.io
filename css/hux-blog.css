@@ -1436,7 +1436,7 @@ img::-moz-selection {
 #tag_cloud .tag:active,
 #tag_cloud a.focus,
 #tag_cloud .tag.focus {
-  background-color: #0085a1 !important;
+  background-color: #000000 !important;
 }
 #tag_cloud a.focus,
 #tag_cloud .tag.focus {
@@ -1445,7 +1445,7 @@ img::-moz-selection {
 #tag_cloud a.tag-button--all,
 #tag_cloud .tag.tag-button--all {
   font-weight: 700;
-  color: #0085a1!important;
+  color: #000000!important;
 }
 #tag_cloud a.tag-button--all:hover,
 #tag_cloud .tag.tag-button--all:hover,
