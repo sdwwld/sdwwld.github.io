@@ -4,6 +4,7 @@ title: "Android LruCache源码详解"
 subtitle: '缓存类LruCache的原理分析'
 author: "山大王"
 header-style: text
+catalog: true
 tags:
   - 源码
   - android
@@ -64,7 +65,7 @@ tags:
 
 ## trimToSize
 
-```java
+```
     /**
      * Remove the eldest entries until the total of remaining entries is at or
      * below the requested size.
@@ -107,7 +108,7 @@ tags:
 
 ## safeSizeOf
 
-```java
+```
     private int safeSizeOf(K key, V value) {
         int result = sizeOf(key, value);
         if (result < 0) {
@@ -121,7 +122,7 @@ tags:
 
 ## put
 
-```java
+```
     public final V put(K key, V value) {
         if (key == null || value == null) {
             throw new NullPointerException("key == null || value == null");
@@ -156,7 +157,7 @@ tags:
 
 ## remove
 
-```java
+```
     public final V remove(K key) {
         if (key == null) {
             throw new NullPointerException("key == null");
@@ -185,7 +186,7 @@ tags:
 
 ## get
 
-```java
+```
     public final V get(K key) {
         if (key == null) {
             throw new NullPointerException("key == null");
@@ -253,7 +254,7 @@ tags:
 
 ## entryRemoved
 
-```java
+```
 //entryRemoved方法是个空方法，什么都没实现，evicted如果是true则表示是为了释放空间调用的，
 //主要是在trimToSize方法中调用，如果是false则一般是被put，get，remove等方法调用。
 protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
@@ -263,7 +264,7 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
 
 ## ImageCache
 
-```java
+```
     /**
      * Simple cache adapter interface. If provided to the ImageLoader, it
      * will be used as an L1 cache before dispatch to Volley. Implementations
@@ -279,7 +280,7 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
 
 ## BitmapLRUCache
 
-```java
+```
 package com.wld;
 
 import android.graphics.Bitmap;
@@ -320,4 +321,4 @@ public class BitmapLRUCache implements ImageCache {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)上面的entryRemoved方法其实是可以实现二级缓存的，我们可以在手机的SD中开辟一块空间，用来保存上面entryRemoved方法中移除的图片。逻辑是这样的，当我们需要图片的时候首先从LruCache中取，如果没有就从SD中取，如果SD卡中也没有就从网络上下载，下载完之后就保存到LruCache中，如果LruCache中图片大小达到上限或者调用remove方法就会执行LruCache的entryRemoved方法，在entryRemoved方法中我们可以把移除的图片存储到SD卡中，这样下一次取的时候还是按照这个顺序来取。网上还有一些实现方法和上面的区别是他没有重写entryRemoved方法，当从网上下载完的时候，在LruCache和SD中都保存了一份，这样做也是可以的。我目前没有发现google的实现SD卡缓存的类，不过第三方的倒是有很多，比如thinkandroid的DiskLruCache类，SmartAndroid的LruDiscCache类还有KJFrameForAndroid的DiskCache类都实现了磁盘缓存。大家有兴趣的话可以自己去看一下，这里就不在介绍。
+上面的entryRemoved方法其实是可以实现二级缓存的，我们可以在手机的SD中开辟一块空间，用来保存上面entryRemoved方法中移除的图片。逻辑是这样的，当我们需要图片的时候首先从LruCache中取，如果没有就从SD中取，如果SD卡中也没有就从网络上下载，下载完之后就保存到LruCache中，如果LruCache中图片大小达到上限或者调用remove方法就会执行LruCache的entryRemoved方法，在entryRemoved方法中我们可以把移除的图片存储到SD卡中，这样下一次取的时候还是按照这个顺序来取。网上还有一些实现方法和上面的区别是他没有重写entryRemoved方法，当从网上下载完的时候，在LruCache和SD中都保存了一份，这样做也是可以的。我目前没有发现google的实现SD卡缓存的类，不过第三方的倒是有很多，比如thinkandroid的DiskLruCache类，SmartAndroid的LruDiscCache类还有KJFrameForAndroid的DiskCache类都实现了磁盘缓存。大家有兴趣的话可以自己去看一下，这里就不在介绍。
