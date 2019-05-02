@@ -390,7 +390,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
 ```
 
 ## removeFirstOccurrence
-
+```
     /**
      * Removes the first occurrence of the specified element in this
      * deque (when traversing the deque from head to tail).
@@ -442,8 +442,10 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
+```
+	
 ##  Queue methods
-
+```
     // *** Queue methods ***
     
     /**
@@ -564,8 +566,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
              elements[(tail - 1) & (elements.length - 1)] != null);
         assert elements[(head - 1) & (elements.length - 1)] == null;
     }
+	```
 ## delete
-
+```
     /**
      * Removes the element at the specified position in the elements array,
      * adjusting head and tail as necessary.  This can result in motion of
@@ -616,8 +619,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             return true;
         }
     }
+	```
 ## Collection Methods
-
+```
     // *** Collection Methods ***
     
     /**
@@ -655,8 +659,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public Iterator<E> descendingIterator() {//迭代器
         return new DescendingIterator();
     }
+	```
 ## DeqIterator
-
+```
     private class DeqIterator implements Iterator<E> {
         /**
          * Index of element to be returned by subsequent call to next.
@@ -721,8 +726,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             }
         }
     }
+	```
 ## DescendingIterator
-
+```
     /**
      * This class is nearly a mirror-image of DeqIterator, using tail
      * instead of head for initial cursor, and head instead of tail
@@ -759,8 +765,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             lastRet = -1;
         }
     }
+	```
 ## contains
-
+```
     /**
      * Returns {@code true} if this deque contains the specified element.
      * More formally, returns {@code true} if and only if this deque contains
@@ -780,8 +787,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
+	```
 ## remove
-
+```
     /**
      * Removes a single instance of the specified element from this deque.
      * If the deque does not contain the element, it is unchanged.
@@ -816,8 +824,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             } while (i != t);
         }
     }
+	```
 ## toArray
-
+```
     /**
      * Returns an array containing all of the elements in this deque
      * in proper sequence (from first to last element).
@@ -860,7 +869,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             System.arraycopy(elements, 0, a, elements.length - head, tail);
         return a;
     }
-## toArray
 
     /**
      * Returns an array containing all of the elements in this deque in
@@ -919,8 +927,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             System.arraycopy(elements, 0, a, firstLeg, tail);
         return a;
     }
+	```
 ## clone
-
+```
     // *** Object methods ***
     
     /**
@@ -962,8 +971,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         for (int i = head; i != tail; i = (i + 1) & mask)
             s.writeObject(elements[i]);
     }
+	```
 ## readObject
-
+```
     /**
      * Reconstitutes this deque from a stream (that is, deserializes it).
      * @param s the stream
@@ -985,6 +995,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         for (int i = 0; i < size; i++)
             elements[i] = s.readObject();
     }
+	```
 ## DeqSpliterator
 
 ```
