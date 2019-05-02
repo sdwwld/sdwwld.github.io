@@ -39,7 +39,7 @@ eventBus主要用于数据之间的传递，使用也非常简单，就几个主
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里面主要看一下findSubscriberMethods方法，他是找到你所在注册类的注解方法，因为一般情况下要想接收数据，必须要加注解的方法，比如@Subscribe(threadMode = ThreadMode.MAIN)或者@Subscribe(threadMode = ThreadMode.MAIN, sticky = true)，当然你也可以修改threadMode指定在其他线程中操作。
+这里面主要看一下findSubscriberMethods方法，他是找到你所在注册类的注解方法，因为一般情况下要想接收数据，必须要加注解的方法，比如@Subscribe(threadMode = ThreadMode.MAIN)或者@Subscribe(threadMode = ThreadMode.MAIN, sticky = true)，当然你也可以修改threadMode指定在其他线程中操作。
 
 POSTING     ：表示发送事件和接收事件在相同的线程  
 MAIN        ：表示在主线程中处理数据  
@@ -71,7 +71,7 @@ ASYNC       ：在另起一个异步线程中执行
     } 
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)上面代码中ignoreGeneratedIndex默认情况下是false，其中findUsingReflection和findUsingInfo有可能最终调用的都是findUsingReflectionInSingleClass，为啥说是有可能，是因为findUsingInfo取值的时候会从先从subscriberInfoIndexes中取，如果有就返回，没有就会调用findUsingReflectionInSingleClass方法，所以来看一下findUsingInfo方法
+上面代码中ignoreGeneratedIndex默认情况下是false，其中findUsingReflection和findUsingInfo有可能最终调用的都是findUsingReflectionInSingleClass，为啥说是有可能，是因为findUsingInfo取值的时候会从先从subscriberInfoIndexes中取，如果有就返回，没有就会调用findUsingReflectionInSingleClass方法，所以来看一下findUsingInfo方法
 
 ## findUsingInfo
 
@@ -97,7 +97,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)注意这里有个方法moveToSuperclass和上面的while循环，moveToSuperclass是获取FindState字段clazz的父类，就是在当前类中查找之后还要在父类中查找注解的方法，不断往上找，直到父类为空为止。其中FindState是一个数据池FindState的对象，默认值为4，private static final int POOL_SIZE = 4;如果有就从池中取，没有就创建，也是为了提高速度，看一下第一行代码prepareFindState
+注意这里有个方法moveToSuperclass和上面的while循环，moveToSuperclass是获取FindState字段clazz的父类，就是在当前类中查找之后还要在父类中查找注解的方法，不断往上找，直到父类为空为止。其中FindState是一个数据池FindState的对象，默认值为4，private static final int POOL_SIZE = 4;如果有就从池中取，没有就创建，也是为了提高速度，看一下第一行代码prepareFindState
 
 ## prepareFindState
 
@@ -116,7 +116,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)来看一下上面的getSubscriberInfo方法，如果获取为空，就会执行findUsingReflectionInSingleClass方法，来看一下getSubscriberInfo的具体实现
+来看一下上面的getSubscriberInfo方法，如果获取为空，就会执行findUsingReflectionInSingleClass方法，来看一下getSubscriberInfo的具体实现
 
 ## getSubscriberInfo
 
@@ -140,7 +140,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)下面的subscriberInfoIndexes是由SubscriberMethodFinder的构造方法传进来的值，这里有一个官方提供的优化方法，就是从subscriberInfoIndexes中取，这个最后在介绍。我们先往上看，会发现无论是findUsingInfo还是findUsingReflection方法，在最后都会调用getMethodsAndRelease方法，我们再来看一下它的具体实现
+下面的subscriberInfoIndexes是由SubscriberMethodFinder的构造方法传进来的值，这里有一个官方提供的优化方法，就是从subscriberInfoIndexes中取，这个最后在介绍。我们先往上看，会发现无论是findUsingInfo还是findUsingReflection方法，在最后都会调用getMethodsAndRelease方法，我们再来看一下它的具体实现
 
 ## getMethodsAndRelease
 
@@ -160,7 +160,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)其实就相当于FindState的回收和订阅方法的返回。下面再来看一下重量级方法findUsingReflectionInSingleClass
+其实就相当于FindState的回收和订阅方法的返回。下面再来看一下重量级方法findUsingReflectionInSingleClass
 
 ## findUsingReflectionInSingleClass
 
@@ -203,7 +203,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)通过反射的方式找到注解的方法，从上面代码可以看出，注解的方法只能有一个参数，其中checkAdd是根据方法和参数进行验证。然后把找到的存到FindState中。OK，关于注解方法的查找也就这些，下面看回过头来看一下register发具体实现，在subscriberMethodFinder.findSubscriberMethods(subscriberClass)方法查找之后，然后进行遍历
+通过反射的方式找到注解的方法，从上面代码可以看出，注解的方法只能有一个参数，其中checkAdd是根据方法和参数进行验证。然后把找到的存到FindState中。OK，关于注解方法的查找也就这些，下面看回过头来看一下register发具体实现，在subscriberMethodFinder.findSubscriberMethods(subscriberClass)方法查找之后，然后进行遍历
 
 ## subscribe
 
@@ -260,7 +260,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)代码比较简单，这里要记住一下subscriptionsByEventType字段，为什么在register之前post会收不到消息，而在register之前postSticky确能收到消息。因为这里会把当前订阅的方法存入到subscriptionsByEventType中，post的时候如果还没有register，那么subscriptionsByEventType就会为空，当然收不到消息，而postSticky是粘性事件，会保存在stickyEvents中，在register的时候还可以在触发。看一下上面代码的第31行，如果之前发送的是粘性事件，也就是postSticky，那么这里就会执行下面的checkPostStickyEventToSubscription方法。上面的boolean eventInheritance = true;默认值为true。checkPostStickyEventToSubscription方法会调用postToSubscription，来看一下postToSubscription方法
+代码比较简单，这里要记住一下subscriptionsByEventType字段，为什么在register之前post会收不到消息，而在register之前postSticky确能收到消息。因为这里会把当前订阅的方法存入到subscriptionsByEventType中，post的时候如果还没有register，那么subscriptionsByEventType就会为空，当然收不到消息，而postSticky是粘性事件，会保存在stickyEvents中，在register的时候还可以在触发。看一下上面代码的第31行，如果之前发送的是粘性事件，也就是postSticky，那么这里就会执行下面的checkPostStickyEventToSubscription方法。上面的boolean eventInheritance = true;默认值为true。checkPostStickyEventToSubscription方法会调用postToSubscription，来看一下postToSubscription方法
 
 ## postToSubscription
 
@@ -301,7 +301,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里就是上面说的几种线程中的操作，看一下MAIN和MAIN_ORDERED。我们以MAIN线程为例继续看，来看一下invokeSubscriber方法
+这里就是上面说的几种线程中的操作，看一下MAIN和MAIN_ORDERED。我们以MAIN线程为例继续看，来看一下invokeSubscriber方法
 
 ## invokeSubscriber
 
@@ -317,7 +317,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这回是彻底明白了，找到订阅的方法，然后通过反射进行调用。这里只是在register中的调用，他只能调用sticky的事件。下面看一下最主要的两个方法post和postSticky
+这回是彻底明白了，找到订阅的方法，然后通过反射进行调用。这里只是在register中的调用，他只能调用sticky的事件。下面看一下最主要的两个方法post和postSticky
 
 ## postSticky
 
@@ -335,7 +335,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)我们看到postSticky调用了post，和post唯一的区别就是他保存了event对象，保存在stickyEvents中，所以postSticky的事件可以在register之前调用原理就在这，把当前订阅的类保存在stickyEvents中，然后register的时候就可以调用，而post没有保存，所以register的时候自然没法触发，这里要注意在上面分析的subscribe方法中，我们知道他只能触发sticky的事件，我们接着往下看post方法
+我们看到postSticky调用了post，和post唯一的区别就是他保存了event对象，保存在stickyEvents中，所以postSticky的事件可以在register之前调用原理就在这，把当前订阅的类保存在stickyEvents中，然后register的时候就可以调用，而post没有保存，所以register的时候自然没法触发，这里要注意在上面分析的subscribe方法中，我们知道他只能触发sticky的事件，我们接着往下看post方法
 
 ## post
 
@@ -364,7 +364,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里就不在过多介绍，主要看一下postSingleEvent方法
+这里就不在过多介绍，主要看一下postSingleEvent方法
 
 ## postSingleEvent
 
@@ -394,7 +394,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)接着看postSingleEventForEventType方法
+接着看postSingleEventForEventType方法
 
 ## postSingleEventForEventType
 
@@ -427,7 +427,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里我们先看一下postToSubscription，就是上面刚分析的，就不在说了，这里我们来看一下subscriptionsByEventType，我们上面分析的subscriptionsByEventType是在register的时候才会把订阅的事件保存，如果在register之前调用post和postSticky方法，那么这里subscriptionsByEventType返回的自然是空，所以也就不会执行下面的代码了，但postSticky不同，虽然他不能执行，但它把订阅的对象保存在了stickyEvents中，在register的时候就会触发了。下面再来说说上面遗留的问题，上面说道subscriberInfoIndexes中取值的时候的问题，这个字段是在SubscriberMethodFinder构造方法中带过来的，而SubscriberMethodFinder是在EventBus类的构造函数中初始化的，而EventBus的构造函数传入的是EventBusBuilder，使用的是建造者模式，且subscriberInfoIndexes默认为空，我们看一下他传值的方法
+这里我们先看一下postToSubscription，就是上面刚分析的，就不在说了，这里我们来看一下subscriptionsByEventType，我们上面分析的subscriptionsByEventType是在register的时候才会把订阅的事件保存，如果在register之前调用post和postSticky方法，那么这里subscriptionsByEventType返回的自然是空，所以也就不会执行下面的代码了，但postSticky不同，虽然他不能执行，但它把订阅的对象保存在了stickyEvents中，在register的时候就会触发了。下面再来说说上面遗留的问题，上面说道subscriberInfoIndexes中取值的时候的问题，这个字段是在SubscriberMethodFinder构造方法中带过来的，而SubscriberMethodFinder是在EventBus类的构造函数中初始化的，而EventBus的构造函数传入的是EventBusBuilder，使用的是建造者模式，且subscriberInfoIndexes默认为空，我们看一下他传值的方法
 
 ## addIndex
 
@@ -442,7 +442,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个很简单，实际上还可以使用一种更加高效的方法，自动为我们生成一个MyEventBusIndex类，它里面会包含我们注解的方法。具体实现是在app的defaultConfig中添加下面代码
+这个很简单，实际上还可以使用一种更加高效的方法，自动为我们生成一个MyEventBusIndex类，它里面会包含我们注解的方法。具体实现是在app的defaultConfig中添加下面代码
 
 ## javaCompileOptions
 
@@ -454,14 +454,14 @@ ASYNC       ：在另起一个异步线程中执行
         }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)然后在dependencies中添加下面代码
+然后在dependencies中添加下面代码
 
 ```java
     implementation 'org.greenrobot:eventbus:3.1.1'
     annotationProcessor 'org.greenrobot:eventbus-annotation-processor:3.1.1'
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)就会自动为我们生成一个类，具体位置如下，                      
+就会自动为我们生成一个类，具体位置如下，                      
 
  ![](/img/blog/2018/20180705163004151.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
@@ -479,7 +479,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)和
+和
 
 ```java
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -493,7 +493,7 @@ ASYNC       ：在另起一个异步线程中执行
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)我们来看一下生成的MyEventBusIndex类
+我们来看一下生成的MyEventBusIndex类
 
 ## MyEventBusIndex
 
@@ -547,14 +547,14 @@ public class MyEventBusIndex implements SubscriberInfoIndex {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)至于他的使用，可以这样
+至于他的使用，可以这样
 
 ```java
         EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();
         EventBus eventBus = EventBus.getDefault();
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里最好把EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();放到Application中，只初始化一次，如果多次初始化会直接抛异常，我们看一下源码
+这里最好把EventBus.builder().addIndex(new MyEventBusIndex()).installDefaultEventBus();放到Application中，只初始化一次，如果多次初始化会直接抛异常，我们看一下源码
 
 ## installDefaultEventBus
 
@@ -577,7 +577,7 @@ public class MyEventBusIndex implements SubscriberInfoIndex {
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)所以他只能初始化一次。OK，EventBus的原理基本已经分析完毕，下面来看一下具体使用。下面有两个类FirstActivity和SecondActivity，我们暂且标记为A和B
+所以他只能初始化一次。OK，EventBus的原理基本已经分析完毕，下面来看一下具体使用。下面有两个类FirstActivity和SecondActivity，我们暂且标记为A和B
 
 ## FirstActivity
 
@@ -619,7 +619,7 @@ public class FirstActivity extends AppCompatActivity {
 }
 ```
 
-## ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)SecondActivity
+## SecondActivity
 
 ```java
 public class SecondActivity extends AppCompatActivity {
@@ -657,7 +657,7 @@ public class SecondActivity extends AppCompatActivity {
 }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)运行一下，看一下打印的log
+运行一下，看一下打印的log
 
 ![](/img/blog/2018/20180705170642495.png)
 
@@ -668,7 +668,7 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(new Intent(FirstActivity.this, SecondActivity.class));
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)看一下打印log，
+看一下打印log，
 
 ![](/img/blog/2018/2018070517143569.png)
 
@@ -679,7 +679,7 @@ public class SecondActivity extends AppCompatActivity {
                 EventBus.getDefault().post("111111");
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)看一下打印log
+看一下打印log
 
 ![](/img/blog/2018/20180705171724407.png)
 
@@ -696,7 +696,7 @@ public class SecondActivity extends AppCompatActivity {
             }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)再来看一下打印log
+再来看一下打印log
 
 ![](/img/blog/2018/20180705172353957.png)
 
