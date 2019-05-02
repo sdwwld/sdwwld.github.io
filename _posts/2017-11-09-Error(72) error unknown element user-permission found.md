@@ -18,6 +18,7 @@ android studio升级之后会出现这样一个问题，Error:(72) error: unknow
 解决方法是在项目的gradle.properties文件中添加
 
 android.enableAapt2=false
+
 如果项目下没有gradle.properties文件可以新建个
 
 ```
