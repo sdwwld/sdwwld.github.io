@@ -433,7 +433,7 @@ public class PathEffectView extends View {
 				android.graphics.PathDashPathEffect.Style.MORPH);
 ```
 
-会看到没有偏移的，这个截图就不在贴出。如果还是不太明白，也可以看一下下面这个视频[PathDashPathEffect视频](https://www.youtube.com/watch?v=WuCNuX95R8o)
+会看到没有偏移的，这个截图就不在贴出。如果还是不太明白，也可以看一下下面这个视频<a href="https://www.youtube.com/watch?v=WuCNuX95R8o" target="_blank">PathDashPathEffect视频</a>
 
 ComposePathEffect是一种组合模式，把两种path所具有的特性组合起来，先看一下源码
 
