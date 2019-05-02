@@ -443,7 +443,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return false;
     }
 ```
-	
+
 ##  Queue methods
 ```
     // *** Queue methods ***
@@ -661,8 +661,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public Iterator<E> descendingIterator() {//迭代器
         return new DescendingIterator();
     }
-	```
-	
+```
+
 ## DeqIterator
 ```
     private class DeqIterator implements Iterator<E> {
@@ -729,8 +729,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             }
         }
     }
-	```
-	
+```
+
 ## DescendingIterator
 ```
     /**
@@ -769,8 +769,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             lastRet = -1;
         }
     }
-	```
-	
+```
+
 ## contains
 ```
     /**
@@ -792,8 +792,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
-	```
-	
+```
+
 ## remove
 ```
     /**
@@ -830,8 +830,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             } while (i != t);
         }
     }
-	```
-	
+```
+
 ## toArray
 ```
     /**
@@ -934,8 +934,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             System.arraycopy(elements, 0, a, firstLeg, tail);
         return a;
     }
-	```
-	
+```
+
 ## clone
 ```
     // *** Object methods ***
@@ -979,8 +979,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         for (int i = head; i != tail; i = (i + 1) & mask)
             s.writeObject(elements[i]);
     }
-	```
-	
+```
+
 ## readObject
 ```
     /**
@@ -1004,8 +1004,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         for (int i = 0; i < size; i++)
             elements[i] = s.readObject();
     }
-	```
-	
+```
+
 ## DeqSpliterator
 ```
     /**
