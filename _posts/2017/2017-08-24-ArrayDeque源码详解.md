@@ -566,7 +566,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
              elements[(tail - 1) & (elements.length - 1)] != null);
         assert elements[(head - 1) & (elements.length - 1)] == null;
     }
-	```
+```
+
 ## delete
 ```
     /**
@@ -619,7 +620,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             return true;
         }
     }
-	```
+```
+
 ## Collection Methods
 ```
     // *** Collection Methods ***
@@ -660,6 +662,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return new DescendingIterator();
     }
 	```
+	
 ## DeqIterator
 ```
     private class DeqIterator implements Iterator<E> {
@@ -727,6 +730,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
     }
 	```
+	
 ## DescendingIterator
 ```
     /**
@@ -766,6 +770,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
     }
 	```
+	
 ## contains
 ```
     /**
@@ -788,6 +793,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return false;
     }
 	```
+	
 ## remove
 ```
     /**
@@ -825,6 +831,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
     }
 	```
+	
 ## toArray
 ```
     /**
