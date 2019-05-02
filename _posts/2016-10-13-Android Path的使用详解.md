@@ -27,6 +27,8 @@ tags:
 
 从注释中可以看出，Path类封装了一些复合的几何路径，其中包括直线，二次曲线，三次曲线等，我们来看一下他的源代码，其中有一个内部类Direction
 
+## Direction
+
 ```java
     /**
      * Specifies how closed shapes (e.g. rects, ovals) are oriented when they
@@ -183,6 +185,8 @@ public class PathView extends View {
 
 下面的是顺时针方向的，上面的是逆时针方向的。OK，在继续看一下Path的其他方法，两个构造方法就不用说了，看一下reset()方法，清除线条，但没有改变他的填充类型，这里有4种类型，待会下面介绍，再看一下rewind()方法，清除线条但保持内部的数据结构，以便下次能快速使用。他俩的区别是reset保留填充类型，但没有保留原有数据结果，而rewind正好相反。在下面有一个枚举类Op
 
+## Op
+
 DIFFERENCE表示path1减去path2后剩下的部分  
 INTERSECT表示path1和path2公共的部分  
 UNION表示path1和path2都具有的部分  
@@ -255,6 +259,8 @@ REVERSE_DIFFERENCE
 ![](/img/blog/2016/20161012171654377.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 再看下一个枚举类FillType
+
+## FillType
 
 WINDING表示取Path所有的区域  
 EVEN_ODD表示取path没有相交的区域  
@@ -343,6 +349,8 @@ rLineTo(float dx, float dy)和lineTo(float dx, float dy)类似，只不过他是
 
 quadTo(float x1, float y1, float x2, float y2)和rQuadTo(float dx1, float dy1, float dx2, float dy2)表示增加一个二次方的贝赛尔曲线，看一下代码
 
+## quadTo
+
 ```java
 package test.view;
 
@@ -391,6 +399,8 @@ public class PathView extends View {
 
 cubicTo(float x1, float y1, float x2, float y2,float x3, float y3)和rCubicTo(float x1, float y1, float x2, float y2,float x3, float y3)表示三次贝赛尔曲线，看一下代码
 
+## cubicTo
+
 ```java
 		mPath.moveTo(200, 200);
 		mPath.lineTo(500, 500);
@@ -432,6 +442,8 @@ arcTo有三个重载的方法，下面只看其中的一个arcTo(float left, flo
 没有连接，如果sweepAngle大于360度的时候，会用sweepAngle对360求余，结果就不在演示了。
 close()是关闭当前轮廓，如果起始点和终止点不重叠就会用一条直线连接。
 
+## addRect
+
 addRect(RectF rect, Direction dir)和addRect(float left, float top, float right, float bottom, Direction dir)增加一个闭合的矩形到path当中，看代码
 
 ```java
@@ -444,6 +456,8 @@ addRect(RectF rect, Direction dir)和addRect(float left, float top, float right,
 ![](/img/blog/2016/20161013112306661.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 addOval(RectF oval, Direction dir)和addOval(float left, float top, float right, float bottom, Direction dir)增加一个闭合的椭圆轮廓到path中，看代码
 
+## addOval
+
 ```java
 		mPath.moveTo(100, 100);
 		mPath.lineTo(400, 400);
@@ -453,6 +467,8 @@ addOval(RectF oval, Direction dir)和addOval(float left, float top, float right,
 
 运行结果
 ![](/img/blog/2016/20161013112643057.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
+
+## addCircle
 
 addCircle(float x, float y, float radius, Direction dir)增加一个圆形轮廓到path中,
 
@@ -490,6 +506,8 @@ addRoundRect增加圆角矩形，看代码
 ![](/img/blog/2016/20161013114901024.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 addPath(Path src, float dx, float dy)，addPath(Path src)和addPath(Path src, Matrix matrix)表示将src添加到path中，dx，dy是偏移量，matrix是转换的矩阵，看代码
+
+## addPath
 
 ```java
 		Matrix mMatrix = new Matrix();
