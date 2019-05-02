@@ -12,14 +12,11 @@ tags:
 > “梅须逊雪三分白，雪却输梅一段香。”
 > --卢梅坡
 
-## 正文
-
 之前的两篇我们详细分析了HashMap和LinkedHashMap，就是为了讲解LruCache做铺垫的，这一篇我们来分析一下Android中常用的缓存类LruCache，我们知道Android中的优化比较多，其中就有一个关于图片缓存的问题，如果处理不好很有可能会出现ANR。在讲解之前我们最好先看一下这个类的注释，由于比较多，我只贴出一部分
 
 ## 用法
 
-```java
-
+```
  *   int cacheSize = 4 * 1024 * 1024; // 4MiB
  *   LruCache<String, Bitmap> bitmapCache = new LruCache<String, Bitmap>(cacheSize) {
  *       protected int sizeOf(String key, Bitmap value) {
@@ -30,13 +27,13 @@ tags:
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)他初始化了一个4M大小的空间，一般情况下我们是使用最大内存的1/4或1/8，如果像上面那样写也是可以的。
 
-```java
+```
 (int)Runtime.getRuntime().maxMemory()/4
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)但要记住必须要重写sizeOf方法，因为它默认是返回1的，
 
-```java
+```
     /**
      * Returns the size of the entry for {@code key} and {@code value} in
      * user-defined units.  The default implementation returns 1 so that size
@@ -53,7 +50,7 @@ tags:
 
 ## LruCache
 
-```java
+```
     public LruCache(int maxSize) {
         if (maxSize <= 0) {
             throw new IllegalArgumentException("maxSize <= 0");
