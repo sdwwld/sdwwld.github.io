@@ -309,4 +309,4 @@ OK，下面再看另一个方法poll()，表示获取二叉树的根元素
 OK，到目前为止，基本上分析完毕。
 
 参阅：<a href="http://www.cnblogs.com/CarpenterLee/p/5488070.html" target="_blank">深入理解Java PriorityQueue</a>    
-&emsp&emsp&emsp&emsp&emsp&emsp&emsp&emsp:  <a href="http://www.2cto.com/kf/201603/496013.html" target="_blank">深入Java集合系列之五：PriorityQueue</a>
+&emsp;&emsp;:  <a href="http://www.2cto.com/kf/201603/496013.html" target="_blank">深入Java集合系列之五：PriorityQueue</a>
