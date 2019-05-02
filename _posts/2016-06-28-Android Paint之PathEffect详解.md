@@ -17,6 +17,8 @@ tags:
 
 CornerPathEffect将Path的线段之间的夹角变成圆角。构造函数，其中radius为圆角的半径
 
+## CornerPathEffect
+
 ```java
     /**
      * Transforms geometries that are drawn (either STROKE or FILL styles) by
@@ -79,6 +81,8 @@ public class PathEffectView extends View {
 ![](/img/blog/2016/20160628162956748.png)![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)
 
 DashPathEffect主要用于画虚线。构造函数，看注释，intervals必须大于大于2，phase是偏移量
+
+## DashPathEffect
 
 ```java
     /**
@@ -179,6 +183,8 @@ public class PathEffectView extends View {
 
 DiscretePathEffect切断线段，segmentLength是指定切断的长度，deviation为切断之后线段的偏移量，随机的，小于等于deviation。
 
+## DiscretePathEffect
+
 ```java
     /**
      * Chop the path into lines of segmentLength, randomly deviating from the
@@ -261,6 +267,8 @@ for (int i = 0; i < mPath.length; i++) {
 ![](/img/blog/2016/20160629123446890.png)
 
 PathDashPathEffect和DashPathEffect差不多，不同的是PathDashPathEffect可以通过自定义图形来绘制path，先看一下他的代码
+
+## PathDashPathEffect
 
 ```java
     public enum Style {
@@ -429,6 +437,8 @@ public class PathEffectView extends View {
 
 ComposePathEffect是一种组合模式，把两种path所具有的特性组合起来，先看一下源码
 
+## ComposePathEffect
+
 ```java
     /**
      * Construct a PathEffect whose effect is to apply first the inner effect
@@ -513,6 +523,8 @@ public class PathEffectView extends View {
 ![](/img/blog/2016/20160905161138730.png)
 
 OK，我们再来看最后一种SumPathEffect，他相当于把两种效果分别展示然后再组合在一起。还是用上面的代码简单的修改一下
+
+## SumPathEffect
 
 ```java
 		mEffects[1] = new DashPathEffect(new float[] { 20, 10, 5, 10 }, 0);
