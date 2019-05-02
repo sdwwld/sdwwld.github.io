@@ -935,6 +935,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return a;
     }
 	```
+	
 ## clone
 ```
     // *** Object methods ***
@@ -979,6 +980,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             s.writeObject(elements[i]);
     }
 	```
+	
 ## readObject
 ```
     /**
@@ -1003,8 +1005,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             elements[i] = s.readObject();
     }
 	```
+	
 ## DeqSpliterator
-
 ```
     /**
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
