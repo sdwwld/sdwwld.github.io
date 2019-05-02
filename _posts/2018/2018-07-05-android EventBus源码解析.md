@@ -40,6 +40,7 @@ eventBus主要用于数据之间的传递，使用也非常简单，就几个主
 ```
 
 ![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这里面主要看一下findSubscriberMethods方法，他是找到你所在注册类的注解方法，因为一般情况下要想接收数据，必须要加注解的方法，比如@Subscribe(threadMode = ThreadMode.MAIN)或者@Subscribe(threadMode = ThreadMode.MAIN, sticky = true)，当然你也可以修改threadMode指定在其他线程中操作。
+
 POSTING     ：表示发送事件和接收事件在相同的线程  
 MAIN        ：表示在主线程中处理数据  
 MAIN_ORDERED：和MAIN一样是在主线程中操作，但需要排队  
