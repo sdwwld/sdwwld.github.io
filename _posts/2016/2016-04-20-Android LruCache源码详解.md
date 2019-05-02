@@ -26,13 +26,13 @@ tags:
  *   }}
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)他初始化了一个4M大小的空间，一般情况下我们是使用最大内存的1/4或1/8，如果像上面那样写也是可以的。
+他初始化了一个4M大小的空间，一般情况下我们是使用最大内存的1/4或1/8，如果像上面那样写也是可以的。
 
 ```
 (int)Runtime.getRuntime().maxMemory()/4
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)但要记住必须要重写sizeOf方法，因为它默认是返回1的，
+但要记住必须要重写sizeOf方法，因为它默认是返回1的，
 
 ```
     /**
@@ -47,7 +47,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)如果是Bitmap的话我们就返回Bitmap的大小。我们来看一下LruCache的构造方法
+如果是Bitmap的话我们就返回Bitmap的大小。我们来看一下LruCache的构造方法
 
 ## LruCache
 
@@ -61,7 +61,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)我们看到里面封装的是LinkedHashMap，最后一个参数是true，说明他的双向环形链表是按照访问顺序来存储的。在上一篇[《Android LinkedHashMap源码详解》](http://blog.csdn.net/abcdef314159/article/details/51178860)中讲到accessOrder参数的时候有提到过，我们来看一下他的一些方法，我们首先看一下public void trimToSize(int maxSize)这个方法
+我们看到里面封装的是LinkedHashMap，最后一个参数是true，说明他的双向环形链表是按照访问顺序来存储的。在上一篇[《Android LinkedHashMap源码详解》](http://blog.csdn.net/abcdef314159/article/details/51178860)中讲到accessOrder参数的时候有提到过，我们来看一下他的一些方法，我们首先看一下public void trimToSize(int maxSize)这个方法
 
 ## trimToSize
 
@@ -104,7 +104,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法其实就是按照LRU算法移除最先加入的元素，也就是最少访问的老数据，直到他的size小于maxSize为止，我们看到18-20行，如果小于直接退出循环，22-25行，如果为空说明是map为null，直接退出循环。eldest()方法得到的是最老的，也是访问量最少的元素，所以根据LRU算法是最先移除的。刚开始看的时候一直不理解，感觉22-25行纯属多余，因为正常的逻辑是maxSize一般是大于0的，如果18-20行成立的话，那么22-25行肯定成立，后来看到上面的注释才明白，maxSize如果为-1,则移除全部。我们看到第29行移除，然后30行再计算一下剩余的size，然后在通过不断的循环执行到上面第19行，直到size小于maxSize才终止循环。移除的时候调用的是HashMap的remove方法，并且在remove内部调用了postRemove方法，这个方法被LinkedHashMap覆写了，移除的同时也把他从双向环形链表中删除了，我们来看一下safeSizeOf方法，其实就是调用的上面sizeOf方法
+这个方法其实就是按照LRU算法移除最先加入的元素，也就是最少访问的老数据，直到他的size小于maxSize为止，我们看到18-20行，如果小于直接退出循环，22-25行，如果为空说明是map为null，直接退出循环。eldest()方法得到的是最老的，也是访问量最少的元素，所以根据LRU算法是最先移除的。刚开始看的时候一直不理解，感觉22-25行纯属多余，因为正常的逻辑是maxSize一般是大于0的，如果18-20行成立的话，那么22-25行肯定成立，后来看到上面的注释才明白，maxSize如果为-1,则移除全部。我们看到第29行移除，然后30行再计算一下剩余的size，然后在通过不断的循环执行到上面第19行，直到size小于maxSize才终止循环。移除的时候调用的是HashMap的remove方法，并且在remove内部调用了postRemove方法，这个方法被LinkedHashMap覆写了，移除的同时也把他从双向环形链表中删除了，我们来看一下safeSizeOf方法，其实就是调用的上面sizeOf方法
 
 ## safeSizeOf
 
@@ -118,7 +118,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)移除的最后调用entryRemoved方法，这个方法是空方法，我们也可以在这里实现二级缓存。接着我们来看一下put方法，
+移除的最后调用entryRemoved方法，这个方法是空方法，我们也可以在这里实现二级缓存。接着我们来看一下put方法，
 
 ## put
 
@@ -153,7 +153,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法比较简单，我们再来看一下另外一个方法public final V remove(K key)
+这个方法比较简单，我们再来看一下另外一个方法public final V remove(K key)
 
 ## remove
 
@@ -182,7 +182,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)这个方法和上面的put差不多，我们在看另外一个方法public final V get(K key)
+这个方法和上面的put差不多，我们在看另外一个方法public final V get(K key)
 
 ## get
 
@@ -250,7 +250,7 @@ tags:
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)还有最后一个方法entryRemoved
+还有最后一个方法entryRemoved
 
 ## entryRemoved
 
@@ -260,7 +260,7 @@ tags:
 protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)OK，到目前为止LruCache的方法已经基本分析完毕，我们就来研究一下LruCache怎么使用，一般情况下我们主要用来存储bitmap的比较多，我们知道bitmap缓存的第三方框架比较多，我们就随便挑一个，我们现在最常用的volley框架一般是用来网络请求的，其实它里面也封装了图片的缓存类ImageLoader，我们看到他里面有个接口，我们看一下
+OK，到目前为止LruCache的方法已经基本分析完毕，我们就来研究一下LruCache怎么使用，一般情况下我们主要用来存储bitmap的比较多，我们知道bitmap缓存的第三方框架比较多，我们就随便挑一个，我们现在最常用的volley框架一般是用来网络请求的，其实它里面也封装了图片的缓存类ImageLoader，我们看到他里面有个接口，我们看一下
 
 ## ImageCache
 
@@ -276,7 +276,7 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {}
     }
 ```
 
-![点击并拖拽以移动](data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==)他有一个put和get方法，我们看上面注释的最后一行，意思是推荐使用LruCache实现。我们可以这样来实现
+他有一个put和get方法，我们看上面注释的最后一行，意思是推荐使用LruCache实现。我们可以这样来实现
 
 ## BitmapLRUCache
 
