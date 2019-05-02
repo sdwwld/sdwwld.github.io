@@ -384,13 +384,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         return (E) elements[(tail - 1) & (elements.length - 1)];
     }
 
-
-
-}
-```
-
-## removeFirstOccurrence
-
     /**
      * Removes the first occurrence of the specified element in this
      * deque (when traversing the deque from head to tail).
@@ -416,7 +409,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
-    
+
     /**
      * Removes the last occurrence of the specified element in this
      * deque (when traversing the deque from head to tail).
@@ -442,10 +435,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
-##  Queue methods
 
     // *** Queue methods ***
-    
+
     /**
      * Inserts the specified element at the end of this deque.
      *
@@ -459,7 +451,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         addLast(e);
         return true;
     }
-    
+
     /**
      * Inserts the specified element at the end of this deque.
      *
@@ -472,7 +464,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public boolean offer(E e) {//插入到最后
         return offerLast(e);
     }
-    
+
     /**
      * Retrieves and removes the head of the queue represented by this deque.
      *
@@ -487,7 +479,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public E remove() {
         return removeFirst();
     }
-    
+
     /**
      * Retrieves and removes the head of the queue represented by this deque
      * (in other words, the first element of this deque), or returns
@@ -501,7 +493,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public E poll() {
         return pollFirst();
     }
-    
+
     /**
      * Retrieves, but does not remove, the head of the queue represented by
      * this deque.  This method differs from {@link #peek peek} only in
@@ -515,7 +507,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public E element() {
         return getFirst();
     }
-    
+
     /**
      * Retrieves, but does not remove, the head of the queue represented by
      * this deque, or returns {@code null} if this deque is empty.
@@ -528,9 +520,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public E peek() {
         return peekFirst();
     }
-    
+
     // *** Stack methods ***
-    
+
     /**
      * Pushes an element onto the stack represented by this deque.  In other
      * words, inserts the element at the front of this deque.
@@ -543,7 +535,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public void push(E e) {
         addFirst(e);
     }
-    
+
     /**
      * Pops an element from the stack represented by this deque.  In other
      * words, removes and returns the first element of this deque.
@@ -557,6 +549,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public E pop() {
         return removeFirst();
     }
+
     private void checkInvariants() {
         assert elements[tail] == null;
         assert head == tail ? elements[head] == null :
@@ -564,7 +557,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
              elements[(tail - 1) & (elements.length - 1)] != null);
         assert elements[(head - 1) & (elements.length - 1)] == null;
     }
-## delete
 
     /**
      * Removes the element at the specified position in the elements array,
@@ -576,8 +568,8 @@ public class ArrayDeque<E> extends AbstractCollection<E>
      *
      * @return true if elements moved backwards
      */
-     //删除数组中下标为i的元素，之前所有的操作都是操作head和tail的，但这个不一样
-     //他会引起head或tail的改变，
+	 //删除数组中下标为i的元素，之前所有的操作都是操作head和tail的，但这个不一样
+	 //他会引起head或tail的改变，
     boolean delete(int i) {
         checkInvariants();
         final Object[] elements = this.elements;
@@ -586,11 +578,11 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         final int t = tail;
         final int front = (i - h) & mask;//i距离head的位置
         final int back  = (t - i) & mask;//i距离tail的位置
-    
+
         // Invariant: head <= i < tail mod circularity
         if (front >= ((t - h) & mask))//保证i的位置元素是存在的
             throw new ConcurrentModificationException();
-    
+
         // Optimize for least element motion
         if (front < back) {//前面的少，从前往后挪，最后head要加1
             if (h <= i) {
@@ -616,10 +608,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             return true;
         }
     }
-## Collection Methods
 
     // *** Collection Methods ***
-    
+
     /**
      * Returns the number of elements in this deque.
      *
@@ -628,18 +619,18 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public int size() {//元素的size
         return (tail - head) & (elements.length - 1);
     }
-    
+
     /**
      * Returns {@code true} if this deque contains no elements.
      *
      * @return {@code true} if this deque contains no elements
      */
-     //是否为空，在上面添加元素的时候也可能head==tail，当添加元素之后head==tail的时候
-     //就认为是满了，然后扩容，重新调整head和tail的值
+	 //是否为空，在上面添加元素的时候也可能head==tail，当添加元素之后head==tail的时候
+	 //就认为是满了，然后扩容，重新调整head和tail的值
     public boolean isEmpty() {
         return head == tail;
     }
-    
+
     /**
      * Returns an iterator over the elements in this deque.  The elements
      * will be ordered from first (head) to last (tail).  This is the same
@@ -651,34 +642,33 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public Iterator<E> iterator() {
         return new DeqIterator();
     }
-    
+
     public Iterator<E> descendingIterator() {//迭代器
         return new DescendingIterator();
     }
-## DeqIterator
 
     private class DeqIterator implements Iterator<E> {
         /**
          * Index of element to be returned by subsequent call to next.
          */
         private int cursor = head;
-    
+
         /**
          * Tail recorded at construction (also in remove), to stop
          * iterator and also to check for comodification.
          */
         private int fence = tail;
-    
+
         /**
          * Index of element returned by most recent call to next.
          * Reset to -1 if element is deleted by a call to remove.
          */
         private int lastRet = -1;
-    
+
         public boolean hasNext() {
             return cursor != fence;
         }
-    
+
         public E next() {
             if (cursor == fence)
                 throw new NoSuchElementException();
@@ -692,7 +682,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             cursor = (cursor + 1) & (elements.length - 1);
             return result;
         }
-    
+
         public void remove() {
             if (lastRet < 0)
                 throw new IllegalStateException();
@@ -702,7 +692,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             }
             lastRet = -1;
         }
-    
+
         @Override
         public void forEachRemaining(Consumer<? super E> action) {
             Objects.requireNonNull(action);
@@ -721,7 +711,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             }
         }
     }
-## DescendingIterator
 
     /**
      * This class is nearly a mirror-image of DeqIterator, using tail
@@ -732,11 +721,11 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         private int cursor = tail;
         private int fence = head;
         private int lastRet = -1;
-    
+
         public boolean hasNext() {
             return cursor != fence;
         }
-    
+
         public E next() {
             if (cursor == fence)
                 throw new NoSuchElementException();
@@ -748,7 +737,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             lastRet = cursor;
             return result;
         }
-    
+
         public void remove() {
             if (lastRet < 0)
                 throw new IllegalStateException();
@@ -759,7 +748,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             lastRet = -1;
         }
     }
-## contains
 
     /**
      * Returns {@code true} if this deque contains the specified element.
@@ -780,7 +768,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         }
         return false;
     }
-## remove
 
     /**
      * Removes a single instance of the specified element from this deque.
@@ -798,7 +785,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     public boolean remove(Object o) {
         return removeFirstOccurrence(o);
     }
-    
+
     /**
      * Removes all of the elements from this deque.
      * The deque will be empty after this call returns.
@@ -816,7 +803,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             } while (i != t);
         }
     }
-## toArray
 
     /**
      * Returns an array containing all of the elements in this deque
@@ -836,12 +822,12 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         final int tail = this.tail;
         boolean wrap = (tail < head);//head有可能小于tail，尤其在addFirst方法中
         int end = wrap ? tail + elements.length : tail;
-    	//如果head小于tail，直接copy从head到tail即可，如果head大于tail，再从head到tail
-    	//肯定不合适，tail需要加上数组的大小，但这里始终有一点困惑，tail + elements.length
-    	// 可能会大于数组的长度，有可能出现数组越界异常，但是看了Arrays.copyOfRange的源码之后
-    	//发现我多虑了
-    	/**
-    	    public static <T,U> T[] copyOfRange(U[] original, int from, int to, Class<? extends T[]> newType) {
+		//如果head小于tail，直接copy从head到tail即可，如果head大于tail，再从head到tail
+		//肯定不合适，tail需要加上数组的大小，但这里始终有一点困惑，tail + elements.length
+		// 可能会大于数组的长度，有可能出现数组越界异常，但是看了Arrays.copyOfRange的源码之后
+		//发现我多虑了
+		/**
+		    public static <T,U> T[] copyOfRange(U[] original, int from, int to, Class<? extends T[]> newType) {
         int newLength = to - from;
         if (newLength < 0)
             throw new IllegalArgumentException(from + " > " + to);
@@ -851,16 +837,15 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         System.arraycopy(original, from, copy, 0,
                          Math.min(original.length - from, newLength));//这里是关键，所以不会出现越界异常
         return copy;
-    	}
-    	*/
+		}
+		*/
         Object[] a = Arrays.copyOfRange(elements, head, end);
-    	//如果wrap为真，那么上面copy的只是从head到数组的最后，那么数组前面到tail的那部分还没copy，所以这里copy
-    	//前面的剩余部分
+		//如果wrap为真，那么上面copy的只是从head到数组的最后，那么数组前面到tail的那部分还没copy，所以这里copy
+		//前面的剩余部分
         if (wrap)
             System.arraycopy(elements, 0, a, elements.length - head, tail);
         return a;
     }
-## toArray
 
     /**
      * Returns an array containing all of the elements in this deque in
@@ -904,7 +889,7 @@ public class ArrayDeque<E> extends AbstractCollection<E>
         final int tail = this.tail;
         boolean wrap = (tail < head);//又是head在后面的情况
         int size = (tail - head) + (wrap ? elements.length : 0);//大小
-    	//copy数组的偏移量，因为有可能先提取后部分然后在提取前部分
+		//copy数组的偏移量，因为有可能先提取后部分然后在提取前部分
         int firstLeg = size - (wrap ? tail : 0);
         int len = a.length;
         if (size > len) {
@@ -919,10 +904,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             System.arraycopy(elements, 0, a, firstLeg, tail);
         return a;
     }
-## clone
 
     // *** Object methods ***
-    
+
     /**
      * Returns a copy of this deque.
      *
@@ -938,9 +922,9 @@ public class ArrayDeque<E> extends AbstractCollection<E>
             throw new AssertionError();
         }
     }
-    
+
     private static final long serialVersionUID = 2340985798034038923L;
-    
+
     /**
      * Saves this deque to a stream (that is, serializes it).
      *
@@ -953,16 +937,15 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     private void writeObject(java.io.ObjectOutputStream s)
             throws java.io.IOException {//序列化写
         s.defaultWriteObject();
-    
+
         // Write out size
         s.writeInt(size());
-    
+
         // Write out elements in order.
         int mask = elements.length - 1;
         for (int i = head; i != tail; i = (i + 1) & mask)
             s.writeObject(elements[i]);
     }
-## readObject
 
     /**
      * Reconstitutes this deque from a stream (that is, deserializes it).
@@ -974,20 +957,18 @@ public class ArrayDeque<E> extends AbstractCollection<E>
     private void readObject(java.io.ObjectInputStream s)
             throws java.io.IOException, ClassNotFoundException {//序列化读
         s.defaultReadObject();
-    
+
         // Read in size and allocate array
         int size = s.readInt();
         allocateElements(size);
         head = 0;
         tail = size;
-    
+
         // Read in all elements in the proper order.
         for (int i = 0; i < size; i++)
             elements[i] = s.readObject();
     }
-## DeqSpliterator
 
-```
     /**
      * Creates a <em><a href="Spliterator.html#binding">late-binding</a></em>
      * and <em>fail-fast</em> {@link Spliterator} over the elements in this
@@ -1081,7 +1062,6 @@ public class ArrayDeque<E> extends AbstractCollection<E>
                 Spliterator.NONNULL | Spliterator.SUBSIZED;
         }
     }
+
+}
 ```
-
-
-
