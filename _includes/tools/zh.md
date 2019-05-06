@@ -31,7 +31,7 @@
 
 - go
 
-  <a href="http://howistart.org/posts/go" target="_blank">开始学习go</a> ，<a href="https://gobyexample.com" target="_blank">Go Example</a> 
+  <a href="http://howistart.org/posts/go/1/index.html" target="_blank">开始学习go</a> ，<a href="https://gobyexample.com" target="_blank">Go Example</a> 
 
 - other
 
