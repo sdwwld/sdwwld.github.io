@@ -19,6 +19,7 @@ rn
 <a href="https://www.indeed.co.uk" target="_blank">indeed</a>  
 
 1. aaaad
+   <a href="https://reactnative.cn" target="_blank">rn中文</a>  ，<a href="https://facebook.github.io/react-native" target="_blank">rn英文</a>  
 2. 3eafdf
 3. 333333333f
 4. dfffdf
