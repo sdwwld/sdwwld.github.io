@@ -1,4 +1,4 @@
-注：有些国外网站可能需要VPN才能打开
+注：有些国外网站可能需要VPN才能打开  
 
 工具  
 <a href="http://www.bejson.com" target="_blank">bejson</a> ，<a href="https://search.maven.org" target="_blank">仓库</a> ，<a href="https://www.androiddevtools.cn" target="_blank">androiddevtools</a>  ，<a href="https://ydmmocoo.github.io" target="_blank">AS插件</a>  ，<a href="https://github.com/mzlogin/awesome-adb" target="_blank">githubADB</a>  ，<a href="http://adbshell.com/commands" target="_blank">adbshell</a>    ，<a href="http://vimcdoc.sourceforge.net/doc/help.html" target="_blank">vim手册</a> ，<a href="https://www.mdeditor.com" target="_blank">MarkDown在线编译器</a>  ，<a href="http://mahua.jser.me" target="_blank">MarkDown在线显示器</a>   ，  
