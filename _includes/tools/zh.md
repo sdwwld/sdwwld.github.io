@@ -23,7 +23,7 @@
 
 - dart
 
-  <a href="https://www.dartlang.org" target="_blank">dartl</a>   ，<a href="https://www.dartcn.com" target="_blank">dart中文</a> ，<a href="https://dartpad.cn" target="_blank">dart运行</a> ，<a href="https://pub.dartlang.org" target="_blank">Dart Packages</a> 
+  <a href="https://www.dartlang.org" target="_blank">dart</a>   ，<a href="https://www.dartcn.com" target="_blank">dart中文</a> ，<a href="https://dartpad.cn" target="_blank">dart运行</a> ，<a href="https://pub.dartlang.org" target="_blank">Dart Packages</a> 
 
 - python
 
