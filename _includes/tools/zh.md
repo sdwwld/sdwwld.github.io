@@ -7,7 +7,7 @@
 
 - android
   
-<a href="https://android.jlelse.eu" target="_blank">AndroidPub</a> ，<a href="https://proandroiddev.com" target="_blank">ProAndroidDev</a> 
+  <a href="https://android.jlelse.eu" target="_blank">AndroidPub</a> ，<a href="https://proandroiddev.com" target="_blank">ProAndroidDev</a> 
   
 - rn
 
