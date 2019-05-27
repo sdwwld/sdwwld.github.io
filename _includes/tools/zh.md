@@ -5,9 +5,12 @@
 
 学习网站  
 
+- android
+  <a href="https://android.jlelse.eu" target="_blank">AndroidPub</a> ，<a href="https://proandroiddev.com" target="_blank">ProAndroidDev</a> 
+
 - rn
 
-  <a href="https://reactnative.cn" target="_blank">rn中文</a>  ，<a href="https://facebook.github.io/react-native" target="_blank">rn英文</a>
+  <a href="https://reactnative.cn" target="_blank">rn中文</a>  ，<a href="https://facebook.github.io/react-native" target="_blank">rn英文</a> 
 
 - vue
 
