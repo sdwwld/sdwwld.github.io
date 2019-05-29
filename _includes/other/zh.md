@@ -44,6 +44,9 @@
 
   <a href="https://developers.weixin.qq.com/miniprogram/dev" target="_blank">微信小程序</a> 
 
+国外博客  
+<a href="https://www.vogella.com" target="_blank">vogella</a>  ，<a href="https://www.programcreek.com/" target="_blank">programcreek</a> 
+
 系统  
 <a href="https://github.com/aosp-mirror" target="_blank">Android源码</a> 
 
