@@ -146,5 +146,8 @@ recommends: [
     },{
         title: "刘望舒",
         href: "https://blog.csdn.net/itachi85?t=1"
+    },{
+        title: "kymjs",
+        href: "https://kymjs.com"
     }
 ]
