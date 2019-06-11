@@ -26,11 +26,11 @@
 
 - python
 
-  
+  <a href="https://www.javatpoint.com/python-tutorial" target="_blank">javatpoint</a>，<a href="https://docs.python-guide.org/intro/learning" target="_blank">Learning Python</a> ，<a href="https://www.programiz.com/python-programming" target="_blank">Learn Python Programming</a> ，<a href="https://www.edureka.co/blog/python-tutorial" target="_blank">Mastering Python</a>，<a href="https://stackify.com/learn-python-tutorials/#post-21937-_f6gsrcj5c7wd" target="_blank">stackify</a> ，
 
 - go
 
-  <a href="http://howistart.org/posts/go/1/index.html" target="_blank">开始学习go</a> ，<a href="https://gobyexample.com" target="_blank">Go Example</a> 
+  <a href="http://howistart.org/posts/go/1/index.html" target="_blank">开始学习go</a> ，<a href="https://www.javatpoint.com/go-tutorial" target="_blank">javatpoint</a>，<a href="https://gobyexample.com" target="_blank">Go Example</a> ，<a href="https://golang.org" target="_blank">golang</a> ，<a href="https://medium.com/rungo/go-introductory-tutorials-896aeda0fb8a" target="_blank">Go Introductory Tutorials</a>
 
 - groovy
 
@@ -38,7 +38,7 @@
 
 - other
 
-  <a href="http://androidxref.com" target="_blank">androidxref</a>  ，<a href="https://github.com/Trinea/android-open-project" target="_blank">Android开源框架</a>  ，<a href="http://a.codekk.com" target="_blank">Android框架源码分析</a>  ，<a href="https://github.com/Tim9Liu9/TimLiu-Android" target="_blank">github上整理的开源框架</a>  ，<a href="https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis" target="_blank">Android源码分析</a>  ，<a href="http://www.importnew.com/7469.html" target="_blank">国外博客</a> ，<a href="https://www.runoob.com" target="_blank">runoob</a> ，<a href="https://www.w3cschool.cn" target="_blank">w3cschool</a>
+  <a href="http://androidxref.com" target="_blank">androidxref</a>  ，<a href="https://github.com/Trinea/android-open-project" target="_blank">Android开源框架</a>  ，<a href="http://a.codekk.com" target="_blank">Android框架源码分析</a>  ，<a href="https://github.com/Tim9Liu9/TimLiu-Android" target="_blank">github上整理的开源框架</a>  ，<a href="https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis" target="_blank">Android源码分析</a>  ，<a href="http://www.importnew.com/7469.html" target="_blank">国外博客</a> ，<a href="https://www.runoob.com" target="_blank">runoob</a> ，<a href="https://www.w3cschool.cn" target="_blank">w3cschool</a> ，<a href="https://www.w3schools.com" target="_blank">w3schools</a>
 
 - 微信小程序
 
