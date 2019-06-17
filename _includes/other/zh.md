@@ -30,7 +30,7 @@
 
 - python
 
-  <a href="https://www.javatpoint.com/python-tutorial" target="_blank">javatpoint</a>，<a href="https://www.liaoxuefeng.com/wiki/1016959663602400" target="_blank">廖雪峰</a> ，<a href="https://www.runoob.com/python/python-tutorial.html" target="_blank">runoob</a> ，<a href="https://docs.python-guide.org/intro/learning" target="_blank">Learning Python</a> ，<a href="https://www.programiz.com/python-programming" target="_blank">Learn Python Programming</a> ，<a href="https://www.edureka.co/blog/python-tutorial" target="_blank">Mastering Python</a>，<a href="https://stackify.com/learn-python-tutorials/#post-21937-_f6gsrcj5c7wd" target="_blank">stackify</a> ，
+  <a href="https://www.javatpoint.com/python-tutorial" target="_blank">javatpoint</a>，<a href="https://docs.python.org/3/index.html" target="_blank">python文档</a> ，<a href="https://www.liaoxuefeng.com/wiki/1016959663602400" target="_blank">廖雪峰</a> ，<a href="https://www.runoob.com/python/python-tutorial.html" target="_blank">runoob</a> ，<a href="https://docs.python-guide.org/intro/learning" target="_blank">Learning Python</a> ，<a href="https://www.programiz.com/python-programming" target="_blank">Learn Python Programming</a> ，<a href="https://www.edureka.co/blog/python-tutorial" target="_blank">Mastering Python</a>，<a href="https://stackify.com/learn-python-tutorials/#post-21937-_f6gsrcj5c7wd" target="_blank">stackify</a> ，
 
 - go
 
