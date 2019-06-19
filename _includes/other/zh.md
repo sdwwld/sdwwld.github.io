@@ -46,7 +46,7 @@
 
 - 微信小程序
 
-  <a href="https://developers.weixin.qq.com/miniprogram/dev" target="_blank">微信小程序</a> 
+  <a href="https://developers.weixin.qq.com/miniprogram/dev/framework" target="_blank">微信小程序</a> 
 
 国外博客  
 <a href="https://medium.com" target="_blank">medium</a>  ，<a href="https://www.vogella.com" target="_blank">vogella</a>  ，<a href="https://www.programcreek.com" target="_blank">programcreek</a>  ，<a href="http://hannesdorfmann.com" target="_blank">hannesdorfmann</a>  ，<a href="https://blog.danlew.net/tag/android" target="_blank">danlew</a>  ，<a href="https://jeroenmols.com" target="_blank">jeroenmols</a>  ，<a href="https://mindorks.com/android/store" target="_blank">mindorks</a>  
