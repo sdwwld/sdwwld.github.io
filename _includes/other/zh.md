@@ -35,7 +35,7 @@
 - java web
 
   <a href="https://start.spring.io" target="_blank">SpringInitializr</a> ，<a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle" target="_blank">Spring Boot Guide</a>  ，<a href="https://spring.io/projects/spring-boot" target="_blank">Spring Project</a>   ，<a href="http://www.ityouknow.com/spring-boot" target="_blank">Spring Boot系列文章</a>   ，<a href="http://springboot.fun" target="_blank">Spring Boot 中文索引</a>   ，<a href="https://www.baeldung.com/spring-boot" target="_blank">Learn Spring Boot</a> 
-  
+
 - go
 
   <a href="http://howistart.org/posts/go/1/index.html" target="_blank">开始学习go</a> ，<a href="https://www.javatpoint.com/go-tutorial" target="_blank">javatpoint</a>，<a href="https://gobyexample.com" target="_blank">Go Example</a> ，<a href="https://golang.org" target="_blank">golang</a> ，<a href="https://medium.com/rungo/go-introductory-tutorials-896aeda0fb8a" target="_blank">Go Introductory Tutorials</a> ，<a href="https://play.golang.org" target="_blank">golang运行环境</a> 
@@ -51,6 +51,10 @@
 - 微信小程序
 
   <a href="https://developers.weixin.qq.com/miniprogram/dev/framework" target="_blank">微信小程序</a> 
+
+- 其他
+
+  <a href="http://ddrv.cn" target="_blank">算法网</a> 
 
 国外博客  
 <a href="https://medium.com" target="_blank">medium</a>  ，<a href="https://www.vogella.com" target="_blank">vogella</a>  ，<a href="https://www.programcreek.com" target="_blank">programcreek</a>  ，<a href="http://hannesdorfmann.com" target="_blank">hannesdorfmann</a>  ，<a href="https://blog.danlew.net/tag/android" target="_blank">danlew</a>  ，<a href="https://jeroenmols.com" target="_blank">jeroenmols</a>  ，<a href="https://mindorks.com/android/store" target="_blank">mindorks</a>  
