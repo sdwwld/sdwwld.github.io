@@ -7,7 +7,7 @@
 <a href="https://github.com/mzlogin/awesome-adb" target="_blank">githubADB</a>  ，<a href="http://adbshell.com/commands" target="_blank">adbshell</a>   ，<a href="http://vimcdoc.sourceforge.net/doc/help.html" target="_blank">vim手册</a> 
 
 下载  
-<a href="https://www.eclipse.org/mat/downloads.php" target="_blank">Memory Analyzer</a> 
+<a href="https://www.eclipse.org/mat/downloads.php" target="_blank">Memory Analyzer</a> ，<a href="https://chrome-extension-downloader.com" target="_blank">Chrome Extension Downloader</a> 
 
 工作  
 <a href="https://www.indeed.co.uk" target="_blank">indeed</a>  
