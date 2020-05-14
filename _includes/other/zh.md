@@ -8,6 +8,9 @@
 
   <a href="http://androidxref.com" target="_blank">android源码查询</a> ，<a href="https://android.jlelse.eu" target="_blank">AndroidPub</a> ，<a href="https://proandroiddev.com" target="_blank">ProAndroidDev</a>  ，<a href="https://medium.com/google-developer-experts" target="_blank">Google Developers Experts</a> 
 
+- C
+<a href="http://c.biancheng.net/c" target="_blank">C语言学习教程</a>，<a href="https://www.dotcpp.com/course/c" target="_blank">C语言网教程</a>，
+  
 - rn
 
   <a href="https://reactnative.cn" target="_blank">rn中文</a>  ，<a href="https://facebook.github.io/react-native" target="_blank">rn英文</a> 
