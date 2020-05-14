@@ -10,7 +10,7 @@
 
 - C
 
-  <a href="http://c.biancheng.net/c" target="_blank">C语言学习教程</a>，<a href="https://www.dotcpp.com/course/c" target="_blank">C语言网教程</a>，
+  <a href="http://c.biancheng.net/c" target="_blank">C语言学习教程</a>，<a href="https://www.dotcpp.com/course/c/" target="_blank">C语言网教程</a>，
   
 - rn
 
