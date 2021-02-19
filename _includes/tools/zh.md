@@ -10,7 +10,7 @@
 <a href="https://ezgif.com/video-to-gif" target="_blank">视频在线转gif</a> ，<a href="https://gifcompressor.com/zh/" target="_blank">gif压缩</a>   ，<a href="https://www.135editor.com" target="_blank">135编辑器</a>   ，<a href="https://bj.96weixin.com" target="_blank">96编译器</a>   ，<a href="https://edit.newrank.cn" target="_blank">新榜编译器</a> ，<a href="https://www.wxeditor.com" target="_blank">易点编译器</a>    ，<a href="https://www.mdeditor.com" target="_blank">MarkDown在线编译器</a>  ，<a href="http://mahua.jser.me" target="_blank">MarkDown在线显示器</a>  ，
 
 LeetCode相关  
-<a href="https://leetcode-cn.com/circle/article/hipGkf" target="_blank">LeetCode编辑使用说明</a> ，<a href="https://leetcode-cn.com/circle/article/2AHfZV" target="_blank">力扣公式编辑器进阶使用指南</a>  
+<a href="http://www.docpe.com/ppt/ppt-to-image.aspx" target="_blank">ppt转图片</a> ，<a href="https://leetcode-cn.com/circle/article/hipGkf" target="_blank">LeetCode编辑使用说明</a> ，<a href="https://leetcode-cn.com/circle/article/2AHfZV" target="_blank">力扣公式编辑器进阶使用指南</a>  
 
 命令  
 <a href="https://github.com/mzlogin/awesome-adb" target="_blank">githubADB</a>  ，<a href="http://adbshell.com/commands" target="_blank">adbshell</a>   ，<a href="http://vimcdoc.sourceforge.net/doc/help.html" target="_blank">vim手册</a> 
