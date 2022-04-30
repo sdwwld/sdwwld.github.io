@@ -9,8 +9,7 @@
 公众号编辑   
 <a href="https://editor.mdnice.com" target="_blank">mdnice</a> ，<a href="http://www.codeinword.com" target="_blank">CodeInWord</a> ，<a href="https://sdwwld.imgbb.com" target="_blank">imgbb</a> ，<a href="http://md.aclickall.com" target="_blank">MarkDown编辑器</a> ，<a href="https://ezgif.com/video-to-gif" target="_blank">视频在线转gif</a> ，<a href="https://gifcompressor.com/zh/" target="_blank">gif压缩</a>   ，<a href="https://www.135editor.com" target="_blank">135编辑器</a>   ，<a href="https://bj.96weixin.com" target="_blank">96编译器</a>   ，<a href="https://edit.newrank.cn" target="_blank">新榜编译器</a> ，<a href="https://www.wxeditor.com" target="_blank">易点编译器</a>    ，<a href="https://www.mdeditor.com" target="_blank">MarkDown在线编译器</a>  ，<a href="http://mahua.jser.me" target="_blank">MarkDown在线显示器</a>  ，
 
-算法
-
+算法  
 <a href="https://oi-wiki.org" target="_blank">oi-wiki</a>
 
 LeetCode相关  
